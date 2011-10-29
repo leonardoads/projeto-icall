@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <libfprint/fprint.h>
+#include "/usr/include/libfprint/fprint.h"
 
 struct fp_dscv_dev *discover_device(struct fp_dscv_dev **discovered_devs)
 {
@@ -104,7 +104,7 @@ int main(void)
 	struct fp_dev *dev;
 	struct fp_print_data *data;
 
-	printf("This program will enroll your right index finger, "
+	printf("This program  enroll your right index finger, "
 		"unconditionally overwriting any right-index print that was enrolled "
 		"previously. If you want to continue, press enter, otherwise hit "
 		"Ctrl+C\n");
