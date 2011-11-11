@@ -1,3 +1,6 @@
+//Projeto PET Computacao UFCG - iCall
+//Autor: Felipe da Silva Travassos 10/11/2011
+
 #include <cstdlib>
 #include <iostream>
 #include <string.h>
@@ -10,12 +13,9 @@
 using namespace std;
 
 class Evento{
-      public:
-             vector<string> usuarios;
-             string evento;
-             string tema;
-             string apresentador;
-             //Nome evento, Nome tema evento, 
+      public:             
+             //Metodos publicos
+             //Nome evento, Nome tema evento, Nome apresentador
              static void novoEvento(string, string, string);
              static void listaUsuarios (string);
              
@@ -27,73 +27,106 @@ class Evento{
              static void setNomeEvento(string);
              static void setNomeApresentador(string);
              static void setTemaEvento(string);
-             static void setListaUsuarios (string);
+             //Recebe um vetor com o nome de todos os usuarios
+             static void setListaUsuarios (vector<string>);
              
       private:
-             //usuario para arquivo usuarios ou evento para arquivo evento 
+             //Variaveis privadas
+             static vector<string> usuarios;
+             static string evento;
+             static string tema;
+             static string apresentador;
+             static int possicaoVector;
+             //Metodos privados
              static string lerArquivo(string);
-             //usuario para arquivo usuarios ou evento para arquivo evento , conteudo, true = adicionar ou false = trocar
-             static void escreveArquivo(string,string, bool);
+             //usuario para arquivo usuarios ou evento para arquivo evento, true = adicionar ou false = trocar
+             static void escreveArquivo(string, bool);
 };
-
-void Evento::novoEvento(string nomeEvento, string temaEvento, string apresentador){
+//Pronto
+void Evento::novoEvento(string nomeEvento, string temaEvento, string nomeApresentador){
+     possicaoVector = 0;
+     evento = nomeEvento;
+     tema = temaEvento;
+     apresentador = nomeApresentador;
+     Evento::escreveArquivo("evento", true);
        
 }
-
-void Evento::listaUsuarios (string usuarios){
-     
+//Pronto
+//Recebe um usuario por vez
+void Evento::listaUsuarios (string usuario){
+     usuarios[possicaoVector] = usuario;
+     possicaoVector++;
+     Evento::escreveArquivo("usuarios", true);
 }
-
+//Pronto
 string Evento::getNomeEvento(){
-  
-}
-
+       return evento;  
+} 
+//Pronto
 string Evento::getNomeApresentador(){
-       
+       return apresentador;
 }
-
+//Pronto
 string Evento::getTemaEvento(){
-       
+       return tema;
 }
-
+//Pronto
 string Evento::getUsuarios(){
-       
+       string retorno;
+       for(int i = 0; i<= possicaoVector; i++){
+               retorno += usuarios[i] + "\n";
+       }
+       return retorno;
 }
-
+//Pronto
 void Evento::setNomeEvento(string nomeEvento){
-
+     evento = nomeEvento;
+     Evento::escreveArquivo("evento", true);
 }
-
+//Pronto
 void Evento::setNomeApresentador(string nomeApresentador){
-
+     apresentador = nomeApresentador;
+     Evento::escreveArquivo("evento", true);
 }
-
+//Pronto
 void Evento::setTemaEvento(string temaEvento){
-
+     tema = temaEvento;
+     Evento::escreveArquivo("evento", true);
 }
-
-void Evento::setListaUsuarios(string listaUsuarios){
-
+//Pronto
+void Evento::setListaUsuarios(vector<string> listaUsuarios){
+     usuarios = listaUsuarios;
+     possicaoVector = 10;
+     escreveArquivo("usuarios", true);
+     possicaoVector = usuarios.size() -1;
 }
-     
-void Evento::escreveArquivo(string arquivo, string conteudo, bool adaicionar){
+//Pronto     
+void Evento::escreveArquivo(string arquivo, bool adicionar){
      ofstream outfile;  
+     string conteudo;
      
-     bool arquivoValido = false;
+     bool escreve = false;
      if(arquivo == "usuarios"){
-          outfile.open("usuarios.icall");
-          arquivoValido = true;
+          if((possicaoVector+1) % 10 == 0){
+                escreve = true;
+                outfile.open("usuarios.icall");
+                for(int i = 0; i<= possicaoVector; i++){
+                        conteudo += usuarios[i];
+                }
+          }
      }
      else if(arquivo == "evento"){
           outfile.open("evento.icall");
-          arquivoValido = true;
+          conteudo = evento + "|" + tema + "|" + apresentador;
+          escreve = true;
      }
  
-     if (outfile.is_open() && outfile.good()){ 
+     if (outfile.is_open() && outfile.good() && escreve){ 
          outfile << conteudo << endl;             
          outfile.close();         
      }
 }
+//Pronto
 string Evento::lerArquivo(string arquivo){
      ifstream arq;
      string str;
@@ -102,9 +135,6 @@ string Evento::lerArquivo(string arquivo){
      }
      else if(arquivo == "evento"){
            arq.open("evento.icall"); 
-     }
-     else{ 
-           return ("Arquivo improprio ou inexistente");
      }
      if (arq.is_open() && arq.good()){
         getline(arq, str, '#');       
