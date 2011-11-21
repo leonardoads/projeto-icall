@@ -1,5 +1,4 @@
 //Projeto PET Computacao UFCG - iCall
-//Autor: Felipe da Silva Travassos 10/11/2011
 
 #include <cstdlib>
 #include <iostream>
