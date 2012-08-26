@@ -1,0 +1,59 @@
+sudo apt-get install liblqr-1-0 
+sudo apt-get install libmagickcore4 
+sudo apt-get install libmagickwand4
+sudo apt-get install libmagickcore4-extra
+sudo apt-get install libbz2-dev 
+sudo apt-get install libdjvulibre-dev 
+sudo apt-get install libexif-dev
+sudo apt-get install libfreetype6-dev
+sudo apt-get install libgraphviz-dev 
+sudo apt-get install libjasper-dev 
+sudo apt-get install libjpeg-dev 
+sudo apt-get install liblcms-dev 
+sudo apt-get install liblqr-1-0-dev 
+sudo apt-get install libltdl-dev 
+sudo apt-get install libopenexr-dev 
+sudo apt-get install libpng-dev 
+sudo apt-get install librsvg2-dev
+sudo apt-get install libtiff-dev 
+sudo apt-get install libwmf-dev 
+sudo apt-get install libx11-dev 
+sudo apt-get install libxext-dev
+sudo apt-get install libxml2-dev
+sudo apt-get install libxt-dev 
+sudo apt-get install lib1g-dev
+sudo apt-get install libgraph4
+sudo apt-get install libgvc5  
+sudo apt-get install libmagickcore4   
+sudo apt-get install libopenexr6 
+
+sudo apt-get install libmagickcore-dev
+sudo apt-get install libmagickwand-dev
+sudo apt-get install libmagick++4 
+
+
+
+sudo apt-get install netpbm 
+sudo apt-get install build-essential
+sudo apt-get install libtool
+sudo apt-get install autoconf
+sudo apt-get install libnss3
+sudo apt-get install libnss3-dev
+sudo apt-get install libglib2.0
+sudo apt-get install imagemagick
+sudo apt-get install libgraphicsmagick1-dev
+sudo apt-get install libmagick++-dev
+sudo apt-get install libusb-1.0
+sudo apt-get install libusb-1.0
+sudo apt-get install libx11-dev
+sudo apt-get install libxv-dev
+
+rm -R ~/.iCall 
+mkdir ~/.iCall
+cp -R  ./icall-libFP/ ~/.iCall
+cd ~/.iCall/icall-libFP/lib/libfprint-master/
+
+sudo sh autogen.sh
+
+make
+sudo make install

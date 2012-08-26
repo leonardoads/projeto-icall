@@ -1,0 +1,27 @@
+matricula=$1
+evento=$2
+cd ~/.iCall/icall-libFP/lib/libfprint-master/examples/
+
+verifica=1
+sudo cp -p ~/.icall/$matricula/7 ~/.fprint/prints/0001/00000000 &&  $verifica=0 # || echo "matricula ainda não cadastrada" 
+         
+arq=math
+
+sudo cat $arq
+if [ $verifica != 0 ]
+    then
+        sudo ./verify
+        
+fi
+
+read linha < $arq
+echo $linha
+if [ $linha != "1" ]
+then
+    echo "Digital Invalida. Confira a sua matricula e tente executar novamente"
+else
+	$evento|sed 's/" "/"_"/g'
+	echo $evento
+   #echo "Verificação executada com Sucesso"
+    echo $matricula >> ~/iCall/$evento"_"verify.icall
+fi

@@ -1,0 +1,13 @@
+sudo apt-get install libusb-1.0
+sudo apt-get install libx11-dev
+sudo apt-get install libxv-dev
+
+rm -R ~/iCall 
+mkdir ~/iCall
+cp -R  ./icall-libFP/ ~/iCall
+cd ~/iCall/icall-libFP/lib/libfprint-master/
+
+sudo sh autogen.sh
+
+make
+sudo make install
