@@ -52,7 +52,7 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == cadastAluno){
 			trocaPainel(cadastraAluno,cadastraAlunos,"iCall - Cadastra aluno");
 		}else if(e.getSource() == verificAulo){
-			
+			trocaPainel(marcapresenca,cadastraAlunos,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
 			
 		}else if(e.getSource() == cadastrar){

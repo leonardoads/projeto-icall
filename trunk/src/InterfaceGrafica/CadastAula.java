@@ -59,7 +59,7 @@ public class CadastAula extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == cadastAluno){
 			trocaPainel(cadastraAluno,cadastraAula,"iCall - Cadastra aluno");
 		}else if(e.getSource() == verificAulo){
-
+			trocaPainel(marcapresenca,cadastraAula,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
 
 		}else if(e.getSource() == cadastAlunoAula){
@@ -74,42 +74,49 @@ public class CadastAula extends JanelaPrincipal implements ActionListener{
 				String dias = "";
 				if(dom.isSelected()){
 					dias+="dom";
+					dom.setSelected(false);  //Se o dia estiver marcado ao cadastrar ele desmarca
 				}
 				if(seg.isSelected()){
 					if(!dias.equals("")){
 						dias+="//";
 					}
 					dias+="seg";
+					seg.setSelected(false);//Se o dia estiver marcado ao cadastrar ele desmarca
 				}
 				if(ter.isSelected()){
 					if(!dias.equals("")){
 						dias+="//";
 					}
 					dias+="ter";
+					ter.setSelected(false);//Se o dia estiver marcado ao cadastrar ele desmarca
 				}
 				if(qua.isSelected()){
 					if(!dias.equals("")){
 						dias+="//";
 					}
 					dias+="qua";
+					qua.setSelected(false);//Se o dia estiver marcado ao cadastrar ele desmarca
 				}
 				if(qui.isSelected()){
 					if(!dias.equals("")){
 						dias+="//";
 					}
 					dias+="qui";
+
 				}
 				if(sex.isSelected()){
 					if(!dias.equals("")){
 						dias+="//";
 					}
 					dias+="sex";
+
 				}
 				if(sab.isSelected()){
 					if(!dias.equals("")){
 						dias+="//";
 					}
 					dias+="sab";
+
 				}
 				if(!dias.equals("")){
 					String dados = nomeAula.getText().toString()+"##"+nomeProf.getText().toString()+"##"+dias;

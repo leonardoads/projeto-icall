@@ -17,6 +17,8 @@ public class Main {
 	public static Component cadastraAluno = (new CadastAluno()).panel();
 	public static Component cadastraAlunos = (new CadastAlunoAula()).panel();
 	public static Component login = (new Login()).panel();
+	public static Component marcapresenca = (new MarcaPresenca()).panel();
+	public static Component marcapresenca2 = (new MarcaPresenca2()).panel();
 	boolean LOGIN = true;
 	
 	public void run(){

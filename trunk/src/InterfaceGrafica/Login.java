@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Login extends Main implements ActionListener{
-	JPanel painelFinal = new JPanel(new GridLayout(0,1));
+	JPanel painelFinal = new JPanel();
 	
 	JButton buttonLogin = new JButton("Login");
 	
@@ -24,75 +26,44 @@ public class Login extends Main implements ActionListener{
 	
 	JLabel labelNome = new JLabel("Nome ");
 	JLabel labelSenha = new JLabel("Senha");
-	
-	JPanel NOME = new JPanel(new BorderLayout(1,0));
-	JPanel SENHA = new JPanel(new BorderLayout(1,0));
-	
-	JPanel panelNome = new JPanel(new GridLayout(0,1));
-	JPanel panelSenha = new JPanel(new GridLayout(0,1));
-	
-	JPanel panelLabNome = new JPanel(new GridLayout(0,1));
-	JPanel panelLabSenha = new JPanel(new GridLayout(0,1));
-	
-	JPanel panelButton = new JPanel(new GridLayout(0,1));
-
+	JLabel img = new JLabel(new ImageIcon("res/backgroundLoginIcall.jpg"));
 	final JLabel label = new JLabel("iCall");
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonLogin){
+			if(nome.getText().toString().equals("icall") && 
+					senha.getText().toString().equals("icall"))
 			trocaPainel(janelaPrincipal, login, "iCall");
+			else{
+				senha.setText("");
+				JOptionPane.showMessageDialog(null, "Usuario ou senha errado");
+			}
 		}
 	}
-	
+	public void limparCampos(){
+		nome.setText("");
+        senha.setText("");
+	}
 	public void criate(){
 		buttonLogin.setMnemonic(KeyEvent.VK_I);
 		buttonLogin.addActionListener(this);
         label.setLabelFor(buttonLogin);
         
+        painelFinal.setLayout(null);
         
-		panelNome.add(nome);
-		panelSenha.add(senha);
-		panelLabNome.add(labelNome);
-		panelLabSenha.add(labelSenha);
-		panelButton.add(buttonLogin);
-		
-		NOME.setBorder(BorderFactory.createEmptyBorder(
-              15, //top
-              15, //lef8t
-              7, //bottom
-              250) //right
-              );	
-		
-		SENHA.setBorder(BorderFactory.createEmptyBorder(
-	          15, //top
-	          15, //lef8t0
-	          7, //bottom
-	          250) //right
-	          );
-		
-        panelButton.setBorder(BorderFactory.createEmptyBorder(
-              15, //top
-              85, //leftjanelaPrincipal
-              7, //bottom
-              270) //right
-              );
-		
-		NOME.add(panelLabNome,BorderLayout.WEST);
-		NOME.add(panelNome);
-		
-		SENHA.add(panelLabSenha,BorderLayout.WEST);
-		SENHA.add(panelSenha);
-		
-		painelFinal.add(NOME);
-		painelFinal.add(SENHA);
-		painelFinal.add(panelButton);
-		
-		painelFinal.setBorder(BorderFactory.createEmptyBorder(
-				220, //top
-                250, //leftjanelaPrincipal
-                10, //bottom
-                0) //right
-                );
+        painelFinal.add(img);
+        img.setBounds(0, 0, 720, 380);
+        
+        painelFinal.add(nome);
+        nome.setBounds(320, 241, 150, 20);
+        painelFinal.add(senha);
+        senha.setBounds(320, 271, 150, 20);
+        painelFinal.add(labelNome);
+		labelNome.setBounds(260, 241, 50, 20);
+        painelFinal.add(labelSenha);
+		labelSenha.setBounds(260, 271, 50, 20);
+        painelFinal.add(buttonLogin);
+		buttonLogin.setBounds(335, 301, 90, 20);
 	}
 	public Component panel(){
 		criate();

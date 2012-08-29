@@ -17,7 +17,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	final String systemSeparator = java.io.File.separator;
 	final String ICALLLOGO = System.getProperty("user.home") + systemSeparator
 			+ ".iCall" + systemSeparator +"logo-Icall.png";
-			
+
 	JPanel painelFinal = new JPanel(new BorderLayout(1, 0));
 	JPanel painelFinalTroca = new JPanel(new BorderLayout(1, 0));
 
@@ -132,6 +132,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
     	
 	}
 	public void criaPainelTroca(){
+		voltar.setText("logoff");
 		JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
 		direita.add(image);
 	}
@@ -152,7 +153,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		}else if(e.getSource() == cadastAluno){
 			trocaPainel(cadastraAluno,janelaPrincipal,"iCall - Cadastra aluno");
 		}else if(e.getSource() == verificAulo){
-			
+			trocaPainel(marcapresenca,janelaPrincipal,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
 			
 		}else if(e.getSource() == cadastAlunoAula){
