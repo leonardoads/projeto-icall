@@ -31,10 +31,10 @@ public class Login extends Main implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonLogin){
-			if(nome.getText().toString().equals("icall") && 
-					senha.getText().toString().equals("icall"))
-			trocaPainel(janelaPrincipal, login, "iCall");
-			else{
+			if(nome.getText().toString().equals("icall") && senha.getText().toString().equals("icall")){
+				trocaPainel(janelaPrincipal, login, "iCall");
+				limparCampos();
+			}else{
 				senha.setText("");
 				JOptionPane.showMessageDialog(null, "Usuario ou senha errado");
 			}
@@ -53,16 +53,16 @@ public class Login extends Main implements ActionListener{
         
         painelFinal.add(img);
         img.setBounds(0, 0, 720, 380);
-        
-        painelFinal.add(nome);
-        nome.setBounds(320, 241, 150, 20);
-        painelFinal.add(senha);
-        senha.setBounds(320, 271, 150, 20);
-        painelFinal.add(labelNome);
-		labelNome.setBounds(260, 241, 50, 20);
-        painelFinal.add(labelSenha);
-		labelSenha.setBounds(260, 271, 50, 20);
-        painelFinal.add(buttonLogin);
+       
+        img.add(nome);
+        nome.setBounds(310, 241, 150, 20);
+        img.add(senha);
+        senha.setBounds(310, 271, 150, 20);
+        img.add(labelNome);
+		labelNome.setBounds(250, 241, 50, 20);
+		img.add(labelSenha);
+		labelSenha.setBounds(250, 271, 50, 20);
+		img.add(buttonLogin);
 		buttonLogin.setBounds(335, 301, 90, 20);
 	}
 	public Component panel(){

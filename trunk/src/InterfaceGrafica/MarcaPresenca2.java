@@ -33,6 +33,7 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == voltar){
 			trocaPainel(marcapresenca,marcapresenca2,"iCall - Marca presença");
+			this.matricula.setText("");
 		}else if(e.getSource() == cadastAula){
 			trocaPainel(cadastraAula,marcapresenca2,"iCall - Cadastra aula");
 		}else if(e.getSource() == cadastAluno){
@@ -44,7 +45,8 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,marcapresenca2,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == computar){
-			
+			String matricula = this.matricula.getText().toString();
+			this.matricula.setText("");
 		}
 	}
 	public void criaPainelTroca(){
