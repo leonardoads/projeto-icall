@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,6 +36,7 @@ public class Login extends Main implements ActionListener{
 	JLabel labelNome = new JLabel("Nome ");
 	JLabel labelSenha = new JLabel("Senha");
 	JLabel img = new JLabel(new ImageIcon("res/backgroundLoginIcall.jpg"));
+	ButtonGroup tipo = new ButtonGroup();
 	final JLabel label = new JLabel("iCall");
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -77,7 +79,7 @@ public class Login extends Main implements ActionListener{
         painelFinal.setLayout(null);
         
         painelFinal.add(img);
-        img.setBounds(0, 0, 720, 380);
+        img.setBounds(0, 0, 720, 450);
        
         img.add(nome);
         nome.setBounds(310, 241, 150, 20);
@@ -87,14 +89,18 @@ public class Login extends Main implements ActionListener{
 		labelNome.setBounds(250, 241, 50, 20);
 		img.add(labelSenha);
 		labelSenha.setBounds(250, 271, 50, 20);
-		//img.add(buttonLogin);
-		//buttonLogin.setBounds(335, 301, 90, 20);
+		img.add(buttonLogin);
+		buttonLogin.setBounds(355, 331, 90, 20);
+		
+		tipo.add(professor);
+		tipo.add(coordenacao);
 		
 		img.add(professor);
-		buttonLogin.setBounds(300, 301, 90, 20);
+		professor.setBounds(250, 301, 100, 20);
 		img.add(coordenacao);
-		buttonLogin.setBounds(390, 301, 90, 20);
+		coordenacao.setBounds(350, 301, 120, 20);
 		
+		professor.setSelected(true);
 	}
 	public Component panel(){
 		criate();
