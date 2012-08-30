@@ -45,9 +45,14 @@ public class Login extends Main implements ActionListener{
 				String arq = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"contas.icall");
 				int i;
 				boolean acc = false;
+				int type = 1;
+				if(professor.isSelected()){
+					type =2;
+				}
 				for(i=0;i<arq.split("\n").length;i++){
 					if(nome.getText().toString().equals(arq.split("\n")[i].split("##")[0]) && 
 							senha.getText().toString().equals(arq.split("\n")[i].split("##")[1])){
+						
 						trocaPainel(janelaPrincipal, login, "iCall");
 						limparCampos();
 						acc = true;
@@ -82,23 +87,23 @@ public class Login extends Main implements ActionListener{
         img.setBounds(0, 0, 720, 450);
        
         img.add(nome);
-        nome.setBounds(310, 241, 150, 20);
+        nome.setBounds(320, 241, 150, 20);
         img.add(senha);
-        senha.setBounds(310, 271, 150, 20);
+        senha.setBounds(320, 271, 150, 20);
         img.add(labelNome);
-		labelNome.setBounds(250, 241, 50, 20);
+		labelNome.setBounds(260, 241, 50, 20);
 		img.add(labelSenha);
-		labelSenha.setBounds(250, 271, 50, 20);
+		labelSenha.setBounds(260, 271, 50, 20);
 		img.add(buttonLogin);
-		buttonLogin.setBounds(355, 331, 90, 20);
+		buttonLogin.setBounds(365, 331, 90, 20);
 		
 		tipo.add(professor);
 		tipo.add(coordenacao);
 		
 		img.add(professor);
-		professor.setBounds(250, 301, 100, 20);
+		professor.setBounds(260, 301, 100, 20);
 		img.add(coordenacao);
-		coordenacao.setBounds(350, 301, 120, 20);
+		coordenacao.setBounds(360, 301, 120, 20);
 		
 		professor.setSelected(true);
 	}
