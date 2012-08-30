@@ -25,9 +25,9 @@ public class Main {
 		criaJanela();
 	}
 	public void criaJanela(){
-		JFrame.setDefaultLookAndFeelDecorated(true);
+		//JFrame.setDefaultLookAndFeelDecorated(true);
 		janela = new JFrame();
-		janela.setSize(720,380);//Tamanho da janela
+		janela.setSize(720,450);//Tamanho da janela
 		janela.setResizable(false);//pode redimensionar a janela
 		janela.setLocation(50,50);//Local onde a janela aparecera
 		janela.setIconImage(null);
