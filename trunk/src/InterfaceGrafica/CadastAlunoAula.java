@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -29,6 +30,8 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 	JComboBox comboAlunos = new JComboBox();
 	
 	JComboBox comboAulas = new JComboBox();
+	
+	JList lista = new JList();
 	
 	JPanel panelAluno= new JPanel(new GridLayout(0,1));
 	JPanel panelAula= new JPanel(new GridLayout(0,1));
