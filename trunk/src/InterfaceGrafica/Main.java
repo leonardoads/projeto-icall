@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class Main {
 	static JFrame janela;
-	
+	public static String tipoUsuario = "PROFESSOR";
 	public static Component janelaPrincipal = (new JanelaPrincipal()).panel();
 	public static Component cadastraAula = (new CadastAula()).panel();
 	public static Component cadastraAluno = (new CadastAluno()).panel();
@@ -20,6 +20,8 @@ public class Main {
 	public static Component marcapresenca = (new MarcaPresenca()).panel();
 	public static Component marcapresenca2 = (new MarcaPresenca2()).panel();
 	boolean LOGIN = true;
+
+	JLabel local = new JLabel("Janela inicial");
 	
 	public void run(){
 		criaJanela();
@@ -37,11 +39,31 @@ public class Main {
 	}
 	public void trocaPainel(Component coloca, Component remover, String titulo){
 		try{
-			JPanel novo = (JPanel) coloca;
 			if(remover != null){
 				janela.remove(remover);
 			}
-			janela.add(novo);
+			if(coloca.equals(janelaPrincipal)){
+				janelaPrincipal = (new JanelaPrincipal()).panel();
+				janela.add((JPanel)janelaPrincipal);
+			}else if(coloca.equals(cadastraAula)){
+				cadastraAula = (new CadastAula()).panel();
+				janela.add((JPanel)cadastraAula);
+			}else if(coloca.equals(cadastraAluno)){
+				cadastraAluno = (new CadastAluno()).panel();
+				janela.add((JPanel)cadastraAluno);
+			}else if(coloca.equals(cadastraAlunos)){
+				cadastraAlunos = (new CadastAlunoAula()).panel();
+				janela.add((JPanel)cadastraAlunos);
+			}else if(coloca.equals(login)){
+				login = (new Login()).panel();
+				janela.add((JPanel)login);
+			}else if(coloca.equals(marcapresenca)){
+				marcapresenca = (new MarcaPresenca()).panel();
+				janela.add((JPanel)marcapresenca);
+			}else if(coloca.equals(marcapresenca2)){
+				marcapresenca2 = (new MarcaPresenca2()).panel();
+				janela.add((JPanel)marcapresenca2);
+			}
 			janela.setTitle(titulo);
 			janela.repaint();
 			janela.setVisible(true);

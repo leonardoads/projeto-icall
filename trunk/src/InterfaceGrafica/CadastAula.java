@@ -3,6 +3,7 @@ package InterfaceGrafica;
 import classes.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -177,59 +178,52 @@ public class CadastAula extends JanelaPrincipal implements ActionListener{
 		cadastra.addActionListener(this);
 		label.setLabelFor(cadastra);
 
-		labAula.add(labelAula);
-		labProf.add(labelprof);
-		labDias.add(labeldias);
-		TexAula.add(nomeAula);
-		TexProf.add(nomeProf);
-		listDias.add(dom);
-		listDias.add(seg);
-		listDias.add(ter);
-		listDias.add(qua);
-		listDias.add(qui);
-		listDias.add(sex);
-		listDias.add(sab);
+		dom.setBackground(new Color(255,255,255,0));  
+		seg.setBackground(new Color(255,255,255,0));  
+		ter.setBackground(new Color(255,255,255,0));  
+		qua.setBackground(new Color(255,255,255,0));  
+		qui.setBackground(new Color(255,255,255,0));  
+		sex.setBackground(new Color(255,255,255,0));  
+		sab.setBackground(new Color(255,255,255,0));  
+		
+		painelFinalTroca.add(labelAula);
+		labelAula.setBounds(5, 10, 350, 20);
+		
+		painelFinalTroca.add(nomeAula);
+		nomeAula.setBounds(5, 40, 350, 20);
+		
+		painelFinalTroca.add(labelprof);
+		labelprof.setBounds(5, 70, 350, 20);
+		
+		painelFinalTroca.add(nomeProf);
+		nomeProf.setBounds(5, 100, 350, 20);
+		
+		painelFinalTroca.add(labeldias);
+		labeldias.setBounds(5, 130, 350, 20);
+		
+		painelFinalTroca.add(dom);
+		dom.setBounds(5, 160, 60, 20);
+		
+		painelFinalTroca.add(seg);
+		seg.setBounds(65, 160, 60, 20);
+		
+		painelFinalTroca.add(ter);
+		ter.setBounds(125, 160, 60, 20);
+		
+		painelFinalTroca.add(qua);
+		qua.setBounds(185, 160, 60, 20);
+		
+		painelFinalTroca.add(qui);
+		qui.setBounds(245, 160, 60, 20);
+		
+		painelFinalTroca.add(sex);
+		sex.setBounds(305, 160, 60, 20);
+		
+		painelFinalTroca.add(sab);
+		sab.setBounds(365, 160, 60, 20);
 
-		aula.add(labelAula);
-		aula.add(nomeAula);
-		prof.add(labelprof);
-		prof.add(nomeProf);
-		dias.add(labDias);
-		dias.add(listDias);
-
-		aula.setBorder(BorderFactory.createEmptyBorder(
-				0, //top
-				20, //left
-				0, //bottom
-				20) //rightaula
-				);
-		prof.setBorder(BorderFactory.createEmptyBorder(
-				0, //top
-				20, //left
-				0, //bottom
-				20) //right
-				);
-		dias.setBorder(BorderFactory.createEmptyBorder(
-				0, //top
-				20, //left
-				0, //bottom
-				20) //right
-				);
-
-		botao.add(cadastra);
-		botao.setBorder(BorderFactory.createEmptyBorder(
-				25, //top
-				280, //left
-				15, //bottom
-				10) //right
-				);
-
-		painel.add(aula);
-		painel.add(prof);
-		painel.add(dias);
-		painel.add(botao);
-
-		painelFinalTroca.add(painel, BorderLayout.NORTH);
+		painelFinalTroca.add(cadastra);
+		cadastra.setBounds(230, 200, 120, 20);
 	}
 	public Component panel(){
 		colocaAjuda();

@@ -1,6 +1,7 @@
 package InterfaceGrafica;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -52,7 +53,10 @@ public class Login extends Main implements ActionListener{
 				for(i=0;i<arq.split("\n").length;i++){
 					if(nome.getText().toString().equals(arq.split("\n")[i].split("##")[0]) && 
 							senha.getText().toString().equals(arq.split("\n")[i].split("##")[1])){
-						
+						if(type==1)
+							tipoUsuario = "COORDENAÇÂO";
+						else
+							tipoUsuario = "PROFESSOR";
 						trocaPainel(janelaPrincipal, login, "iCall");
 						limparCampos();
 						acc = true;
@@ -100,10 +104,12 @@ public class Login extends Main implements ActionListener{
 		tipo.add(professor);
 		tipo.add(coordenacao);
 		
+		professor.setBackground(new Color(255,255,255,0));  
+		coordenacao.setBackground(new Color(255,255,255,0));  
 		img.add(professor);
-		professor.setBounds(260, 301, 100, 20);
+		professor.setBounds(255, 301, 100, 20);
 		img.add(coordenacao);
-		coordenacao.setBounds(360, 301, 120, 20);
+		coordenacao.setBounds(355, 301, 120, 20);
 		
 		professor.setSelected(true);
 	}

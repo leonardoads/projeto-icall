@@ -3,6 +3,7 @@ package InterfaceGrafica;
 import classes.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -62,14 +64,17 @@ public class CadastAluno extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == cadastrar){
 			String matricula = numMatricula.getText().toString();
 			String nome = nomeAluno.getText().toString() ;
-
-			try {
-				Runtime.getRuntime().exec("gnome-terminal -x sh "+ICALLPATH+"enroll.sh"
-						+ " " + nome.replaceAll(" ", "_") + " "
-						+ matricula);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if(!matricula.equals("") && !nome.equals("")){
+				try {
+					Runtime.getRuntime().exec("gnome-terminal -x sh "+ICALLPATH+"enroll.sh"
+							+ " " + nome.replaceAll(" ", "_") + " "
+							+ matricula);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else{
+				JOptionPane.showMessageDialog(null, "ERRO: existem campos em branco");
 			}
 		}
 	}
@@ -81,42 +86,16 @@ public class CadastAluno extends JanelaPrincipal implements ActionListener{
 		cadastrar.addActionListener(this);
         label.setLabelFor(cadastrar);
         
-		panelAluno.add(labelAluno);
-		panelAula.add(labelMatricula);
-		panelButton.add(cadastrar);
-		panelButton.setBorder(BorderFactory.createEmptyBorder(
-                25, //top
-                280, //left
-                15, //bottom
-                10) //right
-                );
-		panelAulas.add(numMatricula);
-		panelNomeAluno.add(nomeAluno);
-		
-		aluno.add(panelAluno);
-		aluno.add(panelNomeAluno);
-		aula.add(panelAula);
-		aula.add(panelAulas);
-		
-		aluno.setBorder(BorderFactory.createEmptyBorder(
-				 0, //top
-	             20, //left
-	             0, //bottom
-	             20) //right
-	             );
-		
-		aula.setBorder(BorderFactory.createEmptyBorder(
-				0, //top
-                20, //left
-                0, //bottom
-                20) //right
-                ); //right
-
-		painel.add(aluno);
-		painel.add(aula);
-		painel.add(panelButton);
-
-    	painelFinalTroca.add(painel, BorderLayout.NORTH);
+        painelFinalTroca.add(labelAluno);
+        labelAluno.setBounds(5, 10, 350, 20);
+        painelFinalTroca.add(nomeAluno);
+        nomeAluno.setBounds(5, 40, 350, 20);
+        painelFinalTroca.add(labelMatricula);
+        labelMatricula.setBounds(5, 70, 350, 20);
+        painelFinalTroca.add(numMatricula);
+        numMatricula.setBounds(5, 100, 350, 20);
+        painelFinalTroca.add(cadastrar);
+        cadastrar.setBounds(225, 140, 130, 20);
 	}
 	public Component panel(){
 		colocaAjuda();

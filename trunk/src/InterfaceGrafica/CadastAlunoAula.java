@@ -72,6 +72,15 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 				nomeAulas[i] = arrayAulas[i].split("##")[0];
 				comboAulas.addItem(arrayAulas[i].split("##")[0] +" - "+arrayAulas[i].split("##")[1]);
 			}
+			
+			String alunos = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"enroll.icall");
+			String[] arrayAlunos = alunos.split("\n");
+			nomeAlunos = new String[arrayAlunos.length];
+			for(int i=0;i<arrayAulas.length;i++){
+				nomeAlunos[i] = arrayAlunos[i].split("##")[0];
+				comboAlunos.addItem(arrayAlunos[i].split("##")[0] +" - "+arrayAlunos[i].split("##")[1]);
+			}
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

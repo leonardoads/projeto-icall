@@ -1,6 +1,7 @@
 package InterfaceGrafica;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,13 +20,13 @@ public class JanelaPrincipal extends Main implements ActionListener{
 			+ ".iCall" + systemSeparator +"logo-Icall.png";
 
 	JPanel painelFinal = new JPanel(new BorderLayout(1, 0));
-	JPanel painelFinalTroca = new JPanel(new BorderLayout(1, 0));
+	JPanel painelFinalTroca = new JPanel();
 
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
 	JButton cadastAula = new JButton("Cadastra aula");
 	JButton cadastAluno = new JButton("Cadastra aluno");
-	JButton cadastAlunoAula = new JButton("Cad. aluno em aula");
+	JButton cadastAlunoAula = new JButton("Preenche aulas");
 	JButton verificAulo = new JButton("Marca presença");
 	JButton gerRelatorio = new JButton("Gerar relatório");
 	JButton voltar = new JButton("Voltar");
@@ -38,8 +39,9 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	JPanel buttonAlunoAula = new JPanel(new GridLayout(0, 1));
 	
 	JPanel botoes = new JPanel(new GridLayout(0, 1));
-	JPanel esquerda = new JPanel(new BorderLayout(0, 1));
+	JPanel esquerda = new JPanel();
 	JPanel direita = new JPanel(new BorderLayout(0, 1));
+	
 	
 	public void colocaAjuda(){
 		cadastAula.setToolTipText("Clique para cadastrar uma nova aula");
@@ -73,68 +75,59 @@ public class JanelaPrincipal extends Main implements ActionListener{
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
+
+		JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
+		
+		local.setText(tipoUsuario);
+		
+		if(tipoUsuario.equals("PROFESSOR")){
+    		esquerda.add(verificAulo);
+    		verificAulo.setBounds(10, 10, 150, 20);
+            esquerda.add(gerRelatorio);
+            gerRelatorio.setBounds(10, 40, 150, 20);
+            esquerda.add(voltar);
+            voltar.setBounds(10, 70, 150, 20);
+    	}else{
+    		esquerda.add(cadastAluno);
+            cadastAluno.setBounds(10, 10, 150, 20);
+            esquerda.add(cadastAula);
+            cadastAula.setBounds(10, 40, 150, 20);
+            esquerda.add(cadastAlunoAula);
+            cadastAlunoAula.setBounds(10, 70, 150, 20);
+            esquerda.add(verificAulo);
+            verificAulo.setBounds(10, 100, 150, 20);
+            esquerda.add(gerRelatorio);
+            gerRelatorio.setBounds(10, 130, 150, 20);
+            esquerda.add(voltar);
+            voltar.setBounds(10, 160, 150, 20);
+    	}
         
-        buttonAula.add(cadastAula);
-    	buttonAluno.add(cadastAluno);
-    	buttonAlunoAula.add(cadastAlunoAula);
-    	buttonVerif.add(verificAulo);
-    	buttonGerRe.add(gerRelatorio);
-    	buttonVoltar.add(voltar);
-    	
-    	buttonAlunoAula.setBorder(BorderFactory.createEmptyBorder(
-                5, //topesquerda
-                10, //leftsai
-                5, //bottom
-                10) //right
-                );
-    	buttonAula.setBorder(BorderFactory.createEmptyBorder(
-                5, //topesquerda
-                10, //leftsai
-                5, //bottom
-                10) //right
-                );
-    	buttonAluno.setBorder(BorderFactory.createEmptyBorder(
-                5, //top
-                10, //left
-                5, //bottom
-                10) //right
-                );
-    	buttonVerif.setBorder(BorderFactory.createEmptyBorder(
-                5, //top
-                10, //left
-                5, //bottomesquerda
-                10) //right
-                );
-    	buttonGerRe.setBorder(BorderFactory.createEmptyBorder(
-                5, //top
-                10, //left
-                5, //bottom
-                10) //right
-                );
-    	buttonVoltar.setBorder(BorderFactory.createEmptyBorder(
-                5, //top
-                10, //left
-                5, //bottom
-                10) //right
-                );
-    	
-    	botoes.add(buttonAula);
-    	botoes.add(buttonAluno);
-    	botoes.add(buttonAlunoAula);
-    	botoes.add(buttonVerif);
-    	botoes.add(buttonGerRe);
-    	botoes.add(buttonVoltar);
+        direita.setLayout(null);
+        painelFinalTroca.setLayout(null);
         
-    	esquerda.add(botoes, BorderLayout.NORTH);
-    	direita.add(painelFinalTroca, BorderLayout.NORTH);
-    	painelFinal.add(esquerda, BorderLayout.WEST);
-    	painelFinal.add(direita, BorderLayout.CENTER);
+        painelFinalTroca.setBackground(new Color(255,255,255,0)); 
+        
+        esquerda.setLayout(null);
+        esquerda.setBackground(new Color(255,255,255,0));  
+        
+        image.add(local);
+        local.setBounds(350, 400, 200, 20);
+        
+    	direita.add(painelFinalTroca);
+    	painelFinalTroca.setBounds(0, 0, 500, 250);
     	
+    	image.add(esquerda);
+    	esquerda.setBounds(0, 0, 160, 300);	
+    	
+    	direita.setBackground(new Color(255,255,255,0));  
+    	
+    	image.add(direita);
+    	direita.setBounds(180, 10, 500, 250);
+    	
+    	painelFinal.add(image);
 	}
 	public void criaPainelTroca(){
 		voltar.setText("logoff");
-		JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
-		direita.add(image);
 	}
 	public Component panel(){
 		colocaAjuda();
