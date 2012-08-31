@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import classes.Evento;
 import classes.LerArquivo;
 
 public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
@@ -23,11 +24,17 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 	JPanel painel= new JPanel();
 	
 	JLabel labelMatricula = new JLabel("Digite a matricula");
+	String disc = "";
 	
 	JTextField matricula = new JTextField();
 	
-	JButton computar = new JButton("Computar");
+	JButton computar = new JButton("Registra");
 	JButton voltar = new JButton("Voltar");
+
+	final String systemSeparator = java.io.File.separator;
+	final String ICALLPATH = System.getProperty("user.home")+systemSeparator + ".iCall"+systemSeparator+"icall-libFP"+systemSeparator;
+	String folderpath = System.getProperty("user.home") + "/iCall";
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -47,6 +54,22 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == computar){
 			String matricula = this.matricula.getText().toString();
 			this.matricula.setText("");
+			
+			try {				
+				Runtime.getRuntime().exec(
+						"gnome-terminal -x sh "+ICALLPATH+"verify.sh"
+								+" "
+								+ matricula+" "
+								+ this.disc.replaceAll(" ", "_"));
+				Runtime.getRuntime().exec(
+						"gnome-terminal -x sh "+ICALLPATH+"t.sh"
+								+" "
+								+ matricula);
+			} catch (IOException err) {
+				// TODO Auto-generated catch block
+				err.printStackTrace();
+			}
+			
 		}
 	}
 	public void criaPainelTroca(){
@@ -79,7 +102,8 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 		
 		painelFinalTroca.add(painel, BorderLayout.NORTH);
 	}
-	public Component panel(){
+	public Component panel(String disc){
+		this.disc = disc;
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();

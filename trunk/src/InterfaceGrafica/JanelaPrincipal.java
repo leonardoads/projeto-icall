@@ -148,7 +148,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		}else if(e.getSource() == verificAulo){
 			trocaPainel(marcapresenca,janelaPrincipal,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
-			
+			trocaPainel(gerarRelatorio,janelaPrincipal,"iCall - Gerar relatório");
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,janelaPrincipal,"iCall - Cadastra aluno em aula");
 		}

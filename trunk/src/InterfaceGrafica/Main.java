@@ -19,6 +19,7 @@ public class Main {
 	public static Component login = (new Login()).panel();
 	public static Component marcapresenca = (new MarcaPresenca()).panel();
 	public static Component marcapresenca2 = (new MarcaPresenca2()).panel();
+	public static Component gerarRelatorio = (new GerarRelatorio()).panel();
 	boolean LOGIN = true;
 
 	JLabel local = new JLabel("Janela inicial");
@@ -61,10 +62,13 @@ public class Main {
 				marcapresenca = (new MarcaPresenca()).panel();
 				janela.add((JPanel)marcapresenca);
 			}else if(coloca.equals(marcapresenca2)){
-				marcapresenca2 = (new MarcaPresenca2()).panel();
+				marcapresenca2 = (new MarcaPresenca2()).panel(titulo.split("##")[1]);
 				janela.add((JPanel)marcapresenca2);
+			}else if(coloca.equals(gerarRelatorio)){
+				gerarRelatorio = (new GerarRelatorio()).panel();
+				janela.add((JPanel)gerarRelatorio);
 			}
-			janela.setTitle(titulo);
+			janela.setTitle(titulo.replace("##", " - "));
 			janela.repaint();
 			janela.setVisible(true);
 		}catch (Exception e) {
