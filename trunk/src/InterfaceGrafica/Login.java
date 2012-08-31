@@ -53,13 +53,17 @@ public class Login extends Main implements ActionListener{
 				for(i=0;i<arq.split("\n").length;i++){
 					if(nome.getText().toString().equals(arq.split("\n")[i].split("##")[0]) && 
 							senha.getText().toString().equals(arq.split("\n")[i].split("##")[1])){
-						if(type==1)
+						if(type==1 && arq.split("\n")[i].split("##")[2].equals("1")){
 							tipoUsuario = "COORDENAÇÂO";
-						else
+							trocaPainel(janelaPrincipal, login, "iCall");
+							limparCampos();
+							acc = true;
+						}else if(type==2 && arq.split("\n")[i].split("##")[2].equals("2")){
 							tipoUsuario = "PROFESSOR";
-						trocaPainel(janelaPrincipal, login, "iCall");
-						limparCampos();
-						acc = true;
+							trocaPainel(janelaPrincipal, login, "iCall");
+							limparCampos();
+							acc = true;
+						}
 						break;
 					}
 				}

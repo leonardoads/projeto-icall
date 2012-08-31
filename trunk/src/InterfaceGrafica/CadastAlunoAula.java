@@ -92,44 +92,16 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 			e.printStackTrace();
 		}
 		
-		panelAluno.add(labelAluno);
-		panelAula.add(labelAula);
-		panelButton.add(cadastrar);
-		panelButton.setBorder(BorderFactory.createEmptyBorder(
-                25, //top
-                280, //left
-                15, //bottom
-                10) //right
-                );
-		comboAulas.setBackground(Color.WHITE);
-		comboAlunos.setBackground(Color.WHITE);
-		panelAulas.add(comboAulas);
-		panelNomeAluno.add(comboAlunos);
-		
-		aluno.add(panelAluno);
-		aluno.add(panelNomeAluno);
-		aula.add(panelAula);
-		aula.add(panelAulas);
-		
-		aluno.setBorder(BorderFactory.createEmptyBorder(
-				 0, //top
-	             20, //left
-	             0, //bottom
-	             20) //right
-	             );
-		
-		aula.setBorder(BorderFactory.createEmptyBorder(
-				0, //top
-                20, //left
-                0, //bottom
-                20) //right
-                ); //right
-
-		painel.add(aula);
-		painel.add(aluno);
-		painel.add(panelButton);
-
-    	painelFinalTroca.add(painel, BorderLayout.NORTH);
+		painelFinalTroca.add(labelAula);
+		labelAula.setBounds(5, 10, 350, 20);
+		painelFinalTroca.add(comboAulas);
+		comboAulas.setBounds(5, 40, 450, 20);
+		painelFinalTroca.add(labelAluno);
+		labelAluno.setBounds(5, 70, 350, 20);
+		painelFinalTroca.add(comboAlunos);
+		comboAlunos.setBounds(5, 100, 450, 20);
+		painelFinalTroca.add(cadastrar);
+		cadastrar.setBounds(105, 140, 150, 20);
 	}
 	public Component panel(){
 		colocaAjuda();
