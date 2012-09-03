@@ -22,6 +22,8 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	JPanel painelFinal = new JPanel(new BorderLayout(1, 0));
 	JPanel painelFinalTroca = new JPanel();
 
+	JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
+	
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
 	JButton cadastAula = new JButton("Cadastra aula");
@@ -29,16 +31,9 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	JButton cadastAlunoAula = new JButton("Preenche aulas");
 	JButton verificAulo = new JButton("Marca presença");
 	JButton gerRelatorio = new JButton("Gerar relatório");
+	JButton professores = new JButton("Professores");
 	JButton voltar = new JButton("Voltar");
 	
-	JPanel buttonAula = new JPanel(new GridLayout(0, 1));
-	JPanel buttonAluno = new JPanel(new GridLayout(0, 1));
-	JPanel buttonVerif = new JPanel(new GridLayout(0, 1));
-	JPanel buttonGerRe = new JPanel(new GridLayout(0, 1));
-	JPanel buttonVoltar = new JPanel(new GridLayout(0, 1));
-	JPanel buttonAlunoAula = new JPanel(new GridLayout(0, 1));
-	
-	JPanel botoes = new JPanel(new GridLayout(0, 1));
 	JPanel esquerda = new JPanel();
 	JPanel direita = new JPanel(new BorderLayout(0, 1));
 	
@@ -49,6 +44,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		verificAulo.setToolTipText("Clique para marcar a presença de um aluno na aula");
 		cadastAlunoAula.setToolTipText("Clique para cadastrar alunos nas aulas");
 		gerRelatorio.setToolTipText("Clique para gerar a lista de presença");
+		professores.setToolTipText("Clique para gerenciar o cadastro de professores");
 		voltar.setToolTipText("Clique para voltar a página inicial");
 	}
 	public void criaPainel(){
@@ -71,12 +67,14 @@ public class JanelaPrincipal extends Main implements ActionListener{
         cadastAlunoAula.setMnemonic(KeyEvent.VK_I);
         cadastAlunoAula.addActionListener(this);
         label.setLabelFor(cadastAlunoAula);
+
+        professores.setMnemonic(KeyEvent.VK_I);
+        professores.addActionListener(this);
+        label.setLabelFor(professores);
         
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
-
-		JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
 		
 		local.setText(tipoUsuario);
 		
@@ -98,8 +96,10 @@ public class JanelaPrincipal extends Main implements ActionListener{
             verificAulo.setBounds(10, 100, 150, 20);
             esquerda.add(gerRelatorio);
             gerRelatorio.setBounds(10, 130, 150, 20);
+            esquerda.add(professores);
+            professores.setBounds(10, 160, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 160, 150, 20);
+            voltar.setBounds(10, 190, 150, 20);
     	}
         
         direita.setLayout(null);
@@ -151,6 +151,8 @@ public class JanelaPrincipal extends Main implements ActionListener{
 			trocaPainel(gerarRelatorio,janelaPrincipal,"iCall - Gerar relatório");
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,janelaPrincipal,"iCall - Cadastra aluno em aula");
+		}else if(e.getSource() == professores){
+			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Gerenciamento de contas");
 		}
 	}
 }

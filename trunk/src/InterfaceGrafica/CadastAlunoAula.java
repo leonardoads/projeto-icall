@@ -33,16 +33,6 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 	
 	JList lista = new JList();
 	
-	JPanel panelAluno= new JPanel(new GridLayout(0,1));
-	JPanel panelAula= new JPanel(new GridLayout(0,1));
-	JPanel panelButton= new JPanel(new GridLayout(0,1));
-	JPanel panelAulas= new JPanel(new GridLayout(0,1));
-	JPanel panelNomeAluno= new JPanel(new GridLayout(0,1));
-	
-	JPanel aluno= new JPanel(new GridLayout(0,1));
-	JPanel aula= new JPanel(new GridLayout(0,1));
-	
-	JPanel painel= new JPanel(new GridLayout(0,1));
 	String[] nomeAulas;
 	String[] nomeAlunos;
 	
