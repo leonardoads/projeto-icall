@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 import classes.LerArquivo;
 
-public class EditarProfessor extends Professores implements ActionListener{
+public class ProfessorEditar extends Professores implements ActionListener{
 	JComboBox nomes = new JComboBox();
 	JPasswordField senha = new JPasswordField();
 	JPasswordField novaSenha = new JPasswordField();

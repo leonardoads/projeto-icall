@@ -21,8 +21,8 @@ public class Main {
 	public static Component marcapresenca2 = (new MarcaPresenca2()).panel();
 	public static Component gerarRelatorio = (new GerarRelatorio()).panel();
 	public static Component panelProfessores = (new Professores()).panel();
-	public static Component novoProfessor = (new NovoProfessor()).panel();
-	public static Component editarProf = (new EditarProfessor()).panel();
+	public static Component novoProfessor = (new ProfessorNovo()).panel();
+	public static Component editarProf = (new ProfessorEditar()).panel();
 	
 	boolean LOGIN = true;
 
@@ -75,10 +75,10 @@ public class Main {
 				panelProfessores = (new Professores()).panel();
 				janela.add((JPanel)panelProfessores);
 			}else if(coloca.equals(novoProfessor)){
-				novoProfessor = (new NovoProfessor()).panel();
+				novoProfessor = (new ProfessorNovo()).panel();
 				janela.add((JPanel)novoProfessor);
 			}else if(coloca.equals(editarProf)){
-				editarProf = (new EditarProfessor()).panel();
+				editarProf = (new ProfessorEditar()).panel();
 				janela.add((JPanel)editarProf);
 			}
 			janela.setTitle(titulo.replace("##", " - "));

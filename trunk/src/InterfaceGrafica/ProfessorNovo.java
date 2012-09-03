@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class NovoProfessor extends Professores implements ActionListener{
+public class ProfessorNovo extends Professores implements ActionListener{
 	JTextField nome = new JTextField();
 	JPasswordField senha = new JPasswordField();
 	JPasswordField senhaConf = new JPasswordField();
