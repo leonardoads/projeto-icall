@@ -1,7 +1,6 @@
 package gerenciarArq;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,60 +20,46 @@ public class Arquivo {
 	static String sepInf = "##";
 	
 	public static void escreveArquivo(String conteudo, String Arquivo, boolean adicionar){
-		Arquivo = Arquivo+".txt";
+		Arquivo = Arquivo;
         try {
             FileWriter fw;
             fw = new FileWriter(Arquivo, adicionar);
             fw.write(conteudo);
             fw.close();
-			JOptionPane.showMessageDialog(null, "Opera��o realizada com sucesso");
+			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso");
         } catch (IOException ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-	public static ArrayList lerArquivo(String arquivo)throws FileNotFoundException, IOException {
-		String arq = "";
+	public static ArrayList<String> lerArquivo(String arquivo)throws FileNotFoundException, IOException {
 		ArrayList<String> List = new ArrayList<String>();
-		BufferedReader br = new BufferedReader(new FileReader(arquivo+".txt"));   
+		BufferedReader br = new BufferedReader(new FileReader(arquivo));   
 		  
         while(br.ready()){   
-	        String linha = br.readLine();   
-	        List.add(linha);
+	        String linha = br.readLine(); 
+	        if(!linha.equals(""))
+	        	List.add(linha);
         }   
         br.close();  
         return List;
 	}
-	public static String[] buscar(String nome){
+	public static String[] buscar(String nome, String nomeArq){
 		try{
-			ArrayList<String> arq = lerArquivo("cadastros");
+			ArrayList<String> arq = lerArquivo(nomeArq);
 			for(int i=0;i<arq.size();i++){
 				if(arq.get(i).split(sepInf)[0].equals(nome)){
 					return arq.get(i).split(sepInf);
 				}
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		return null;
 	}
-	public static ArrayList<String> niver(String mes){
-		ArrayList<String> retorno = new ArrayList<String>();
-		try{
-			ArrayList<String> arq = lerArquivo("cadastros");
-			for(int i=0;i<arq.size();i++){
-				if(Integer.parseInt(arq.get(i).split(sepInf)[2].split("/")[1]) == Integer.parseInt(mes)){
-					retorno.add(arq.get(i));
-				}
-			}
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		return retorno;
-	}
-	public static ArrayList<String> listaOrdemAlfabetica(){
+	public static ArrayList<String> listaOrdemAlfabetica(String nomeArq){
 		String[] nomes = null;
 		try{
-			ArrayList<String> arq = lerArquivo("cadastros");
+			ArrayList<String> arq = lerArquivo(nomeArq);
 			nomes = new String[arq.size()];
 			String[] retorno = new String[arq.size()];
 			for (int i = 0; i < nomes.length; i++) {
@@ -89,7 +74,7 @@ public class Arquivo {
 				}
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		ArrayList<String> retorno = new ArrayList<String>();
 		for(String i : nomes){
@@ -97,22 +82,22 @@ public class Arquivo {
 		}
 		return retorno;
 	}
-	public static boolean verificaNome(String nome){
+	public static boolean verificaNome(String nome, String nomeArq){
 		try{
-			ArrayList<String> arq = lerArquivo("cadastros");
+			ArrayList<String> arq = lerArquivo(nomeArq);
 			for(int i=0;i<arq.size();i++){
 				if(arq.get(i).split(sepInf)[0].equals(nome))
-					return false;
+					return true;
 			}
 		}catch (Exception e) {
-			return true;
+			return false;
 		}
-		return true;
+		return false;
 	}
 	public static void editar(String inf, String nomeArq){
 		try{
 			String novoConteudo = "";
-			ArrayList<String> arq = lerArquivo("cadastros");
+			ArrayList<String> arq = lerArquivo(nomeArq);
 			for (int i = 0; i < arq.size(); i++) {
 				if(arq.get(i).split(sepInf)[0].equals(inf.split(sepInf)[0])){
 					novoConteudo+=inf;
@@ -124,7 +109,7 @@ public class Arquivo {
 			}
 			Arquivo.escreveArquivo(novoConteudo, nomeArq, false);
 		}catch (Exception e) {
-			// TODO: handle exception
+
 		}
 	}
 	public static void excluir(String inf, String nomeArq){
@@ -138,13 +123,13 @@ public class Arquivo {
 			}
 			Arquivo.escreveArquivo(novoConteudo,nomeArq, false);
 		}catch (Exception e) {
-			// TODO: handle exception
+
 		}
 	}
-	public static ArrayList<String> nomeMembros(){
+	public static ArrayList<String> nomesCadast(String nomeArq){
 		ArrayList<String> retorno = new ArrayList<String>();
 		try{
-			ArrayList<String> arq = lerArquivo("cadastros");
+			ArrayList<String> arq = lerArquivo(nomeArq);
 			for(int i=0;i<arq.size();i++){
 				retorno.add(arq.get(i).split(sepInf)[0]);
 			}

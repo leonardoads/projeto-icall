@@ -30,6 +30,8 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener{
 			trocaPainel(marcapresenca,gerarRelatorio,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
 			
+		}else if(e.getSource() == professores){
+			trocaPainel(panelProfessores,gerarRelatorio,"iCall - Gerenciamento de contas");
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,gerarRelatorio,"iCall - Cadastra aluno em aula");
 		}

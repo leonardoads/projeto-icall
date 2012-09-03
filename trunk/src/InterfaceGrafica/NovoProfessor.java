@@ -1,5 +1,7 @@
 package InterfaceGrafica;
 
+import gerenciarArq.Arquivo;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -23,19 +25,28 @@ public class NovoProfessor extends Professores implements ActionListener{
 	JLabel LConfSenha = new JLabel("Confirme a senha:");
 	
 	JButton conf = new JButton("Cadastrar");
+	final String systemSeparator = java.io.File.separator;
+	final String caminho = System.getProperty("user.home") + systemSeparator + "iCall" + systemSeparator ;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == conf){
 			if(senha.getText().equals(senhaConf.getText())){
-				JOptionPane.showMessageDialog(null, "ERRO: ainda não implementado");
+				if(!Arquivo.verificaNome(nome.getText(), caminho+"contas.icall")){
+					Arquivo.escreveArquivo(nome.getText()+"##"+senha.getText()+"##2\n", caminho+"contas.icall", true);
+					senha.setText("");
+					senhaConf.setText("");
+					nome.setText("");
+				}else{
+					JOptionPane.showMessageDialog(null, "ERRO: nome ja cadastrado");
+				}
 			}else{
 				JOptionPane.showMessageDialog(null, "ERRO: as senhas não coincidem");
 			}
 		}else if(e.getSource() == voltar){
 			trocaPainel(panelProfessores,novoProfessor,"iCall");
 		}else if(e.getSource() == modificar){
-
+			trocaPainel(editarProf,novoProfessor,"iCall - Editar senha");
 		}else if(e.getSource() == listar){
 
 		}else if(e.getSource() == deletar){

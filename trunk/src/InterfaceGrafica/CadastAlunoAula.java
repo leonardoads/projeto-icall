@@ -47,7 +47,9 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == verificAulo){
 			trocaPainel(marcapresenca,cadastraAlunos,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
-			
+			trocaPainel(gerarRelatorio,cadastraAlunos,"iCall - Gerar relatório");
+		}else if(e.getSource() == professores){
+			trocaPainel(panelProfessores,cadastraAlunos,"iCall - Gerenciamento de contas");
 		}else if(e.getSource() == cadastrar){
 			String aula = nomeAulas[comboAulas.getSelectedIndex()];
 			String aulo = nomeAlunos[comboAlunos.getSelectedIndex()];

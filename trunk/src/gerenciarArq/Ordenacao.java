@@ -2,15 +2,13 @@ package gerenciarArq;
 
 import java.util.Arrays;
 
-import auxiliadores.Auxiliadora;
-
 public class Ordenacao {
-	Auxiliadora auxiliadora = new Auxiliadora();
 	String[] retorno;
 	String[] aux;
 	final static int nome = 1;
 	final static int data = 2;
 	int tamanho;
+	static String sepInf = "##";
 	
 	public String[] ordenar(String[] lista, int metodo, boolean crescente){
 		tamanho = lista.length;
@@ -35,13 +33,13 @@ public class Ordenacao {
 	private void ordenaNome(){
 		aux = new String[tamanho];
 		for(int i =0;i<tamanho;i++){
-			aux[i] = retorno[i].split(auxiliadora.getSeparadorInf())[0];
+			aux[i] = retorno[i].split(sepInf)[0];
 		}
 		Arrays.sort(aux);
 		String[] aux2 = new String[tamanho];
 		for(int i = 0;i<tamanho;i++){
 			for(int j = 0;j<tamanho;j++){
-				if(aux[i].equals(retorno[j].split(auxiliadora.getSeparadorInf())[0])){
+				if(aux[i].equals(retorno[j].split(sepInf)[0])){
 					aux2[i] = retorno[j];
 				}
 			}

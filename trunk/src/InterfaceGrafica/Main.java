@@ -22,6 +22,7 @@ public class Main {
 	public static Component gerarRelatorio = (new GerarRelatorio()).panel();
 	public static Component panelProfessores = (new Professores()).panel();
 	public static Component novoProfessor = (new NovoProfessor()).panel();
+	public static Component editarProf = (new EditarProfessor()).panel();
 	
 	boolean LOGIN = true;
 
@@ -76,6 +77,9 @@ public class Main {
 			}else if(coloca.equals(novoProfessor)){
 				novoProfessor = (new NovoProfessor()).panel();
 				janela.add((JPanel)novoProfessor);
+			}else if(coloca.equals(editarProf)){
+				editarProf = (new EditarProfessor()).panel();
+				janela.add((JPanel)editarProf);
 			}
 			janela.setTitle(titulo.replace("##", " - "));
 			janela.repaint();

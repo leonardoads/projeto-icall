@@ -58,9 +58,11 @@ public class CadastAluno extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == verificAulo){
 			trocaPainel(marcapresenca,cadastraAluno,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
-			
+			trocaPainel(gerarRelatorio,cadastraAluno,"iCall - Gerar relatório");
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,cadastraAluno,"iCall - Cadastra aluno em aula");
+		}else if(e.getSource() == professores){
+			trocaPainel(panelProfessores,cadastraAluno,"iCall - Gerenciamento de contas");
 		}else if(e.getSource() == cadastrar){
 			String matricula = numMatricula.getText().toString();
 			String nome = nomeAluno.getText().toString() ;

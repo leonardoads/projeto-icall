@@ -121,7 +121,7 @@ public class Professores extends Main implements ActionListener{
 		if(e.getSource() == voltar){
 			trocaPainel(janelaPrincipal,panelProfessores,"iCall");
 		}else if(e.getSource() == modificar){
-
+			trocaPainel(editarProf,panelProfessores,"iCall - Editar senha");
 		}else if(e.getSource() == listar){
 
 		}else if(e.getSource() == deletar){
