@@ -19,19 +19,19 @@ import javax.swing.JTextField;
 import classes.LerArquivo;
 
 public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
-	
+
 	JPanel painel= new JPanel();
-	
+
 	JLabel labelaula = new JLabel("Escolha a aula");
 	JLabel labeltempo = new JLabel("Digite o tempo em que o sistema ficara online. EM MINUTOS");
-	
+
 	JComboBox comboAulas = new JComboBox();
-	
+
 	JTextField tempo = new JTextField();
-	
+
 	JButton iniciar = new JButton("Iniciar");
 	JButton voltar = new JButton("Voltar");
-	
+
 	String[] nomeAulas;
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -48,7 +48,19 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,marcapresenca,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == iniciar){
-			trocaPainel(marcapresenca2,marcapresenca,"iCall - Marca presença##"+nomeAulas[comboAulas.getSelectedIndex()]);
+			if(!tempo.getText().trim().equals("") ){
+				try{
+		            Integer temp = Integer.parseInt(tempo.getText());
+		            trocaPainel(marcapresenca2,marcapresenca,"iCall - Marca presença##"+nomeAulas[comboAulas.getSelectedIndex()]);
+				}catch(NumberFormatException ex){            
+					JOptionPane.showMessageDialog(null, "Só é permitido números inteiros!");  
+				}
+				
+
+			}else{
+				JOptionPane.showMessageDialog(null, "Digite o tempo que o sistema ficará online.");
+
+			}
 		}
 	}
 	public void criaPainelTroca(){
@@ -70,46 +82,46 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
 		iniciar.setMnemonic(KeyEvent.VK_I);
 		iniciar.addActionListener(this);
-        label.setLabelFor(iniciar);
-        
-        voltar.setMnemonic(KeyEvent.VK_I);
-        voltar.addActionListener(this);
-        label.setLabelFor(voltar);
-        
-        verificAulo.setMnemonic(KeyEvent.VK_I);
-        verificAulo.addActionListener(this);
-        label.setLabelFor(verificAulo);
-		
+		label.setLabelFor(iniciar);
+
+		voltar.setMnemonic(KeyEvent.VK_I);
+		voltar.addActionListener(this);
+		label.setLabelFor(voltar);
+
+		verificAulo.setMnemonic(KeyEvent.VK_I);
+		verificAulo.addActionListener(this);
+		label.setLabelFor(verificAulo);
+
 		painel.setLayout(null);
-		
+
 		painel.add(labelaula);
 		labelaula.setBounds(20, 20, 450, 20);
-		
+
 		painel.add(comboAulas);
 		comboAulas.setBounds(20, 50, 550, 20);
-		
+
 		painel.add(labeltempo);
 		labeltempo.setBounds(20, 90,450, 20);
-		
+
 		painel.add(tempo);
 		tempo.setBounds(20, 120,250, 20);
-		
+
 		painel.add(iniciar);
 		iniciar.setBounds(20, 170,110, 20);
-		
+
 		painel.add(voltar);
 		voltar.setBounds(140, 170,110, 20);
-		
+
 		painelFinalTroca.add(painel, BorderLayout.NORTH);
 	}
 	public Component panel(){
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();
-		
+
 		return painel;
 	}
 }
