@@ -3,6 +3,7 @@ package InterfaceGrafica;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -35,6 +36,12 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == cadastAlunoAula){
 			trocaPainel(cadastraAlunos,gerarRelatorio,"iCall - Cadastra aluno em aula");
 		}
+		//ações de gerar relatório: basta implementar as duas condições
+		else if(e.getSource() == presenca){
+
+		}else if(e.getSource() == matriculados){
+
+		}
 	}
 	public void criaPainelTroca(){
 		try {
@@ -53,6 +60,13 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		presenca.setMnemonic(KeyEvent.VK_I);
+		presenca.addActionListener(this);
+        label.setLabelFor(presenca);
+        
+        matriculados.setMnemonic(KeyEvent.VK_I);
+        matriculados.addActionListener(this);
+        label.setLabelFor(matriculados);
 		
 		painelFinalTroca.add(comboAulas);
 		comboAulas.setBounds(5, 10, 450, 20);

@@ -23,6 +23,8 @@ public class Main {
 	public static Component panelProfessores = (new Professores()).panel();
 	public static Component novoProfessor = (new ProfessorNovo()).panel();
 	public static Component editarProf = (new ProfessorEditar()).panel();
+	public static Component deletProf = (new ProfessorExcluir()).panel();
+	public static Component listProf = (new ProfessoresLista()).panel();
 	
 	boolean LOGIN = true;
 
@@ -39,6 +41,7 @@ public class Main {
 		janela.setLocation(50,50);//Local onde a janela aparecera
 		janela.setIconImage(null);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		trocaPainel(login, null, "iCall - login");
 		//trocaPainel(janelaPrincipal, null, "iCall");
 	}
@@ -80,6 +83,12 @@ public class Main {
 			}else if(coloca.equals(editarProf)){
 				editarProf = (new ProfessorEditar()).panel();
 				janela.add((JPanel)editarProf);
+			}else if(coloca.equals(deletProf)){
+				deletProf = (new ProfessorExcluir()).panel();
+				janela.add((JPanel)deletProf);
+			}else if(coloca.equals(listProf)){
+				listProf = (new ProfessoresLista()).panel();
+				janela.add((JPanel)listProf);
 			}
 			janela.setTitle(titulo.replace("##", " - "));
 			janela.repaint();

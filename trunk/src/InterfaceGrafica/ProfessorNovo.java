@@ -48,9 +48,9 @@ public class ProfessorNovo extends Professores implements ActionListener{
 		}else if(e.getSource() == modificar){
 			trocaPainel(editarProf,novoProfessor,"iCall - Editar senha");
 		}else if(e.getSource() == listar){
-
+			trocaPainel(listProf,novoProfessor,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
-
+			trocaPainel(deletProf,novoProfessor,"iCall - Excluir cadastro");
 		}else if(e.getSource() == novo){
 			trocaPainel(novoProfessor,novoProfessor,"iCall - Cadastrar professor");
 		}

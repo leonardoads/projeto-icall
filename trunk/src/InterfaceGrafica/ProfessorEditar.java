@@ -49,11 +49,11 @@ public class ProfessorEditar extends Professores implements ActionListener{
 		}else if(e.getSource() == voltar){
 			trocaPainel(panelProfessores,editarProf,"iCall");
 		}else if(e.getSource() == modificar){
-
+			trocaPainel(editarProf,editarProf,"iCall - Editar senha");
 		}else if(e.getSource() == listar){
-
+			trocaPainel(listProf,editarProf,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
-
+			trocaPainel(deletProf,editarProf,"iCall - Excluir cadastro");
 		}else if(e.getSource() == novo){
 			trocaPainel(novoProfessor,editarProf,"iCall - Cadastrar professor");
 		}

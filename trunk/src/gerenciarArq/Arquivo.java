@@ -115,7 +115,7 @@ public class Arquivo {
 	public static void excluir(String inf, String nomeArq){
 		try{
 			String novoConteudo = "";
-			ArrayList<String> arq = lerArquivo("cadastros");
+			ArrayList<String> arq = lerArquivo(nomeArq);
 			for (int i = 0; i < arq.size(); i++) {
 				if(!arq.get(i).split(sepInf)[0].equals(inf)){
 					novoConteudo+=arq.get(i)+"\n";

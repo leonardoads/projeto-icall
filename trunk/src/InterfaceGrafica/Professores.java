@@ -25,12 +25,6 @@ public class Professores extends Main implements ActionListener{
 	
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
-	JButton cadastAula = new JButton("Cadastra aula");
-	JButton cadastAluno = new JButton("Cadastra aluno");
-	JButton cadastAlunoAula = new JButton("Preenche aulas");
-	JButton verificAulo = new JButton("Marca presença");
-	JButton gerRelatorio = new JButton("Gerar relatório");
-	JButton professores = new JButton("Professores");
 	
 	JButton novo = new JButton("Novo");
 	JButton modificar = new JButton("Modificar");
@@ -101,7 +95,7 @@ public class Professores extends Main implements ActionListener{
     	direita.setBackground(new Color(255,255,255,0));  
     	
     	image.add(direita);
-    	direita.setBounds(180, 10, 500, 250);
+    	direita.setBounds(180, 10, 500, 350);
     	
     	painelFinal.add(image);
 	}
@@ -123,9 +117,9 @@ public class Professores extends Main implements ActionListener{
 		}else if(e.getSource() == modificar){
 			trocaPainel(editarProf,panelProfessores,"iCall - Editar senha");
 		}else if(e.getSource() == listar){
-
+			trocaPainel(listProf,panelProfessores,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
-
+			trocaPainel(deletProf,panelProfessores,"iCall - Excluir cadastro");
 		}else if(e.getSource() == novo){
 			trocaPainel(novoProfessor,panelProfessores,"iCall - Cadastrar professor");
 		}
