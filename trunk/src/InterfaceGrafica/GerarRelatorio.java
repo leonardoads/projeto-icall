@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,11 @@ import javax.swing.JFileChooser;
 import classes.LerArquivo;
 
 public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
-
+	
+	final String systemSeparator = java.io.File.separator;
+	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
+			+ "iCall" + systemSeparator;
+	
 	JComboBox comboAulas = new JComboBox();
 	JButton presenca = new JButton("Presença");
 	JButton matriculados = new JButton("Matriculados");
@@ -37,6 +42,7 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if (e.getSource() == voltar) {
 			trocaPainel(janelaPrincipal, gerarRelatorio, "iCall");
 		} else if (e.getSource() == cadastAula) {
@@ -54,6 +60,10 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 			trocaPainel(cadastraAlunos, gerarRelatorio,
 					"iCall - Cadastra aluno em aula");
 		}
+		
+
+
+
 
 		else if (e.getSource() == presenca) {
 
@@ -61,7 +71,7 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 			int resultado = salvandoArquivo.showSaveDialog(salvandoArquivo);
 			File salvarArquivoEscolhido = salvandoArquivo.getSelectedFile();
 
-			String caminhoArquivoPresenca = "/home/annynha/iCall/Gerência_da_Informação_verify.icall";
+			String caminhoArquivoPresenca = ICALLPATH +comboAulas.getSelectedItem().toString().split(" - ")[0].replace(" ", "_")+"_verify.icall";
 
 			if (resultado != JFileChooser.APPROVE_OPTION) {
 				return;
@@ -180,4 +190,3 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		return painelFinal;
 	}
 }
-
