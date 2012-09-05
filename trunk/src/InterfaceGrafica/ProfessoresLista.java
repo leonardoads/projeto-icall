@@ -15,9 +15,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class ProfessoresLista extends Professores implements ActionListener{
 	JList nomes = new JList();
+	JTable tabelasNomes = new JTable();
 	
 	final String systemSeparator = java.io.File.separator;
 	final String caminho = System.getProperty("user.home") + systemSeparator + "iCall" + systemSeparator ;

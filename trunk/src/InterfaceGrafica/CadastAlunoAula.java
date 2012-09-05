@@ -1,5 +1,7 @@
 package InterfaceGrafica;
 
+import gerenciarArq.Arquivo;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -17,11 +20,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import classes.LerArquivo;
 
 public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
-	
+	final String systemSeparator = java.io.File.separator;
+	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
+			+ "iCall" + systemSeparator;
 	JLabel labelAluno = new JLabel("Digite o nome do aluno");
 	JLabel labelAula = new JLabel("Selecione uma aula");
 	
@@ -51,14 +57,18 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == professores){
 			trocaPainel(panelProfessores,cadastraAlunos,"iCall - Gerenciamento de contas");
 		}else if(e.getSource() == cadastrar){
-			String aula = nomeAulas[comboAulas.getSelectedIndex()];
-			String aulo = nomeAlunos[comboAlunos.getSelectedIndex()];
+			String aula = comboAulas.getSelectedItem().toString();
+			String aluno = comboAlunos.getSelectedItem().toString();
+			
+			Arquivo.escreveArquivo(aluno+"\n", ICALLPATH+"matriculados_"+aula+".icall", true);
 		}
 	}
 
 	public void criaPainelTroca(){
 		cadastrar.setToolTipText("Click para continuar o cadastro");
-		
+		cadastrar.setMnemonic(KeyEvent.VK_I);
+		cadastrar.addActionListener(this);
+        label.setLabelFor(cadastrar);
 		try {
 			String aulas = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"eventos.icall");
 			String[] arrayAulas = aulas.split("\n");
@@ -74,6 +84,7 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 			for(int i=0;i<arrayAulas.length;i++){
 				nomeAlunos[i] = arrayAlunos[i].split("##")[0];
 				comboAlunos.addItem(arrayAlunos[i].split("##")[0] +" - "+arrayAlunos[i].split("##")[1]);
+				
 			}
 			
 		} catch (FileNotFoundException e) {

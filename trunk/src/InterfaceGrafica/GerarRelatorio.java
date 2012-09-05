@@ -59,13 +59,7 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		} else if (e.getSource() == cadastAlunoAula) {
 			trocaPainel(cadastraAlunos, gerarRelatorio,
 					"iCall - Cadastra aluno em aula");
-		}
-		
-
-
-
-
-		else if (e.getSource() == presenca) {
+		}else if (e.getSource() == presenca) {
 
 			JFileChooser salvandoArquivo = new JFileChooser();
 			int resultado = salvandoArquivo.showSaveDialog(salvandoArquivo);
@@ -96,7 +90,7 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 			int resultado = salvandoArquivo.showSaveDialog(salvandoArquivo);
 			File salvarArquivoEscolhido = salvandoArquivo.getSelectedFile();
 
-			String caminhoArquivoMatriculados = "/home/annynha/iCall/enroll.icall";
+			String caminhoArquivoMatriculados = ICALLPATH+"matriculados_"+comboAulas.getSelectedItem().toString().split(" - ")[0]+".icall";
 
 			if (resultado != JFileChooser.APPROVE_OPTION) {
 				return;
