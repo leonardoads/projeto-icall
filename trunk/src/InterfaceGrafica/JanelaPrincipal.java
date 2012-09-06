@@ -29,6 +29,8 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	JButton cadastAula = new JButton("Cadastra aula");
 	JButton cadastAluno = new JButton("Cadastra aluno");
 	JButton cadastAlunoAula = new JButton("Preenche aulas");
+	JButton gerenciaAlunos = new JButton("Gerencia alunos");
+	JButton gerenciaAulas = new JButton("Gerencia aulas");
 	JButton verificAulo = new JButton("Marca presença");
 	JButton gerRelatorio = new JButton("Gerar relatório");
 	JButton professores = new JButton("Professores");
@@ -60,6 +62,14 @@ public class JanelaPrincipal extends Main implements ActionListener{
         verificAulo.addActionListener(this);
         label.setLabelFor(verificAulo);
         
+        gerenciaAlunos.setMnemonic(KeyEvent.VK_I);
+        gerenciaAlunos.addActionListener(this);
+        label.setLabelFor(gerenciaAlunos);
+        
+        gerenciaAulas.setMnemonic(KeyEvent.VK_I);
+        gerenciaAulas.addActionListener(this);
+        label.setLabelFor(gerenciaAulas);
+        
         gerRelatorio.setMnemonic(KeyEvent.VK_I);
         gerRelatorio.addActionListener(this);
         label.setLabelFor(gerRelatorio);
@@ -82,7 +92,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
     		esquerda.add(verificAulo);
     		verificAulo.setBounds(10, 10, 150, 20);
             esquerda.add(gerRelatorio);
-            gerRelatorio.setBounds(10, 40, 150, 20);
+            gerRelatorio.setBounds(10, 40, 11550, 20);
             esquerda.add(voltar);
             voltar.setBounds(10, 70, 150, 20);
     	}else{
@@ -92,14 +102,18 @@ public class JanelaPrincipal extends Main implements ActionListener{
             cadastAula.setBounds(10, 40, 150, 20);
             esquerda.add(cadastAlunoAula);
             cadastAlunoAula.setBounds(10, 70, 150, 20);
+            esquerda.add(gerenciaAlunos);
+            gerenciaAlunos.setBounds(10, 100, 150, 20);
+            esquerda.add(gerenciaAulas);
+            gerenciaAulas.setBounds(10, 130, 150, 20);
             esquerda.add(verificAulo);
-            verificAulo.setBounds(10, 100, 150, 20);
+            verificAulo.setBounds(10, 160, 150, 20);
             esquerda.add(gerRelatorio);
-            gerRelatorio.setBounds(10, 130, 150, 20);
+            gerRelatorio.setBounds(10, 190, 150, 20);
             esquerda.add(professores);
-            professores.setBounds(10, 160, 150, 20);
+            professores.setBounds(10, 220, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 190, 150, 20);
+            voltar.setBounds(10, 250, 150, 20);
     	}
         
         direita.setLayout(null);
@@ -111,7 +125,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
         esquerda.setBackground(new Color(255,255,255,0));  
         
         image.add(local);
-        local.setBounds(350, 400, 200, 20);
+        local.setBounds(350, 400, 300, 20);
         
     	direita.add(painelFinalTroca);
     	painelFinalTroca.setBounds(0, 0, 500, 250);

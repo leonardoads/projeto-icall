@@ -1,5 +1,6 @@
 package InterfaceGrafica;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.ImageIcon;
@@ -41,7 +42,7 @@ public class Main {
 		janela.setLocation(50,50);//Local onde a janela aparecera
 		janela.setIconImage(null);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		trocaPainel(login, null, "iCall - login");
 		//trocaPainel(janelaPrincipal, null, "iCall");
 	}

@@ -43,6 +43,8 @@ public class Professores extends Main implements ActionListener{
 		voltar.setToolTipText("Clique para voltar a página inicial");
 	}
 	public void criaPainel(){
+		local.setText("Gerencia de cadastro de professores");
+		
 		novo.setMnemonic(KeyEvent.VK_I);
 		novo.addActionListener(this);
         label.setLabelFor(novo);
@@ -62,7 +64,6 @@ public class Professores extends Main implements ActionListener{
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
-		
 		
     	esquerda.add(novo);
     	novo.setBounds(10, 10, 150, 20);
@@ -84,7 +85,7 @@ public class Professores extends Main implements ActionListener{
         esquerda.setBackground(new Color(255,255,255,0));  
         
         image.add(local);
-        local.setBounds(350, 400, 200, 20);
+        local.setBounds(350, 400, 300, 20);
         
     	direita.add(painelFinalTroca);
     	painelFinalTroca.setBounds(0, 0, 500, 250);
