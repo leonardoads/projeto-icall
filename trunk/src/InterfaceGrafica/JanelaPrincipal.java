@@ -44,6 +44,8 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		cadastAula.setToolTipText("Clique para cadastrar uma nova aula");
 		cadastAluno.setToolTipText("Clique para cadastrar um novo aluno");
 		verificAulo.setToolTipText("Clique para marcar a presença de um aluno na aula");
+		gerenciaAlunos.setToolTipText("Editar ou excluir algum cadastro ou Listar todos os cadastrados");
+		gerenciaAulas.setToolTipText("Editar ou excluir algum cadastro ou Listar todos as aulas cadastradas");
 		cadastAlunoAula.setToolTipText("Clique para cadastrar alunos nas aulas");
 		gerRelatorio.setToolTipText("Clique para gerar a lista de presença");
 		professores.setToolTipText("Clique para gerenciar o cadastro de professores");
@@ -159,6 +161,10 @@ public class JanelaPrincipal extends Main implements ActionListener{
 			trocaPainel(cadastraAula,janelaPrincipal,"iCall - Cadastra aula");
 		}else if(e.getSource() == cadastAluno){
 			trocaPainel(cadastraAluno,janelaPrincipal,"iCall - Cadastra aluno");
+		}else if(e.getSource() == gerenciaAlunos){
+			trocaPainel(gerCadas,janelaPrincipal,"iCall - Gerencia de cadastro");
+		}else if(e.getSource() == gerenciaAulas){
+			trocaPainel(gerCadas,janelaPrincipal,"iCall - Gerencia de cadastro");
 		}else if(e.getSource() == verificAulo){
 			trocaPainel(marcapresenca,janelaPrincipal,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){

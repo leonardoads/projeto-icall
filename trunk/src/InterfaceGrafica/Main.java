@@ -26,6 +26,7 @@ public class Main {
 	public static Component editarProf = (new ProfessorEditar()).panel();
 	public static Component deletProf = (new ProfessorExcluir()).panel();
 	public static Component listProf = (new ProfessoresLista()).panel();
+	public static Component gerCadas = (new GerCadastros()).panel();
 	
 	boolean LOGIN = true;
 
