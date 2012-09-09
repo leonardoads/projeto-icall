@@ -34,6 +34,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	JButton verificAulo = new JButton("Marca presença");
 	JButton gerRelatorio = new JButton("Gerar relatório");
 	JButton professores = new JButton("Professores");
+	JButton btsobre = new JButton("Sobre");
 	JButton voltar = new JButton("Voltar");
 	
 	JPanel esquerda = new JPanel();
@@ -84,6 +85,10 @@ public class JanelaPrincipal extends Main implements ActionListener{
         professores.addActionListener(this);
         label.setLabelFor(professores);
         
+        btsobre.setMnemonic(KeyEvent.VK_I);
+		btsobre.addActionListener(this);
+		label.setLabelFor(btsobre);
+        
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
@@ -114,8 +119,10 @@ public class JanelaPrincipal extends Main implements ActionListener{
             gerRelatorio.setBounds(10, 190, 150, 20);
             esquerda.add(professores);
             professores.setBounds(10, 220, 150, 20);
+            esquerda.add(btsobre);
+			btsobre.setBounds(10, 250, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 250, 150, 20);
+            voltar.setBounds(10, 280, 150, 20);
     	}
         
         direita.setLayout(null);
@@ -173,6 +180,8 @@ public class JanelaPrincipal extends Main implements ActionListener{
 			trocaPainel(cadastraAlunos,janelaPrincipal,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == professores){
 			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Gerenciamento de contas");
+		}else if(e.getSource() == btsobre){
+			trocaPainel(panelSobre,janelaPrincipal,"Sobre");
 		}
 	}
 }

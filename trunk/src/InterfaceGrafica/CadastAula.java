@@ -67,6 +67,8 @@ public class CadastAula extends JanelaPrincipal implements ActionListener{
 			trocaPainel(cadastraAlunos,cadastraAula,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == professores){
 			trocaPainel(panelProfessores,cadastraAula,"iCall - Gerenciamento de contas");
+		}else if(e.getSource() == btsobre){
+			trocaPainel(panelSobre,cadastraAula,"Sobre");
 		}else if(e.getSource() == cadastra){
 			if (nomeAula.getText().trim().isEmpty()) {   // verifica se o nome da aula está preencido 
 				JOptionPane.showMessageDialog(null,"Todos os campos precisam ser preenchidos!");

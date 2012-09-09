@@ -1,9 +1,7 @@
 package InterfaceGrafica;
 
-import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,11 +25,12 @@ public class Main {
 	public static Component deletProf = (new ProfessorExcluir()).panel();
 	public static Component listProf = (new ProfessoresLista()).panel();
 	public static Component gerCadas = (new GerCadastros()).panel();
-	
+	public static Component panelSobre = (new About()).panel();
+
 	boolean LOGIN = true;
 
 	JLabel local = new JLabel("Janela inicial");
-	
+
 	public void run(){
 		criaJanela();
 	}
@@ -43,7 +42,7 @@ public class Main {
 		janela.setLocation(50,50);//Local onde a janela aparecera
 		janela.setIconImage(null);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		trocaPainel(login, null, "iCall - login");
 		//trocaPainel(janelaPrincipal, null, "iCall");
 	}
@@ -91,13 +90,16 @@ public class Main {
 			}else if(coloca.equals(listProf)){
 				listProf = (new ProfessoresLista()).panel();
 				janela.add((JPanel)listProf);
+			}else if(coloca.equals(panelSobre)){
+				panelSobre = (new About()).panel();
+				janela.add((JPanel)panelSobre);
 			}
-			janela.setTitle(titulo.replace("##", " - "));
-			janela.repaint();
-			janela.setVisible(true);
-		}catch (Exception e) {
-			System.err.println("Erro: trocaPainel\n\n"+e.getMessage());
+				janela.setTitle(titulo.replace("##", " - "));
+				janela.repaint();
+				janela.setVisible(true);
+			}catch (Exception e) {
+				System.err.println("Erro: trocaPainel\n\n"+e.getMessage());
+			}
 		}
+
 	}
-	
-}
