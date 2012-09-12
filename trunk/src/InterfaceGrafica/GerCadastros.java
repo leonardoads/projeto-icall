@@ -26,7 +26,7 @@ public class GerCadastros extends Main implements ActionListener{
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
 	
-	//JButton novo = new JButton("Novo");
+	JButton novo = new JButton("Novo");
 	JButton modificar = new JButton("Modificar");
 	JButton listar = new JButton("Listar");
 	JButton deletar = new JButton("Excluir");
@@ -36,7 +36,7 @@ public class GerCadastros extends Main implements ActionListener{
 	JPanel direita = new JPanel(new BorderLayout(0, 1));
 	
 	public void colocaAjuda(){
-		//novo.setToolTipText("Nova conta para professor");
+		novo.setToolTipText("Novo cadastro");
 		modificar.setToolTipText("Modificar uma conta de professor");
 		listar.setToolTipText("Lista de professores cadastrados");
 		deletar.setToolTipText("Deletar o cadastro de um professor");
@@ -45,9 +45,9 @@ public class GerCadastros extends Main implements ActionListener{
 	public void criaPainel(){
 		local.setText("Gerencia de cadastros");
 		
-//		novo.setMnemonic(KeyEvent.VK_I);
-//		novo.addActionListener(this);
-//        label.setLabelFor(novo);
+		novo.setMnemonic(KeyEvent.VK_I);
+		novo.addActionListener(this);
+        label.setLabelFor(novo);
         
         modificar.setMnemonic(KeyEvent.VK_I);
         modificar.addActionListener(this);
@@ -65,16 +65,16 @@ public class GerCadastros extends Main implements ActionListener{
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
 		
-    	esquerda.add(modificar);
-    	modificar.setBounds(10, 10, 150, 20);
+    	esquerda.add(novo);
+    	novo.setBounds(10, 10, 150, 20);
+        esquerda.add(modificar);
+        modificar.setBounds(10, 40, 150, 20);
         esquerda.add(deletar);
-        deletar.setBounds(10, 40, 150, 20);
+        deletar.setBounds(10, 70, 150, 20);
         esquerda.add(listar);
-        listar.setBounds(10, 70, 150, 20);
+        listar.setBounds(10, 100, 150, 20);
         esquerda.add(voltar);
-        voltar.setBounds(10, 100, 150, 20);
-//        esquerda.add(voltar);
-//        voltar.setBounds(10, 130, 150, 20);    	
+        voltar.setBounds(10, 130, 150, 20);    	
         
         direita.setLayout(null);
         painelFinalTroca.setLayout(null);
@@ -113,17 +113,5 @@ public class GerCadastros extends Main implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == voltar){
-			trocaPainel(janelaPrincipal,gerCadas,"iCall");
-		}else if(e.getSource() == modificar){
-			trocaPainel(editarProf,gerCadas,"iCall - Editar cadastro");
-		}else if(e.getSource() == listar){
-			trocaPainel(listProf,gerCadas,"iCall - Lista de cadastros");
-		}else if(e.getSource() == deletar){
-			trocaPainel(deletProf,gerCadas,"iCall - Excluir cadastro");
-		}
-//		else if(e.getSource() == novo){
-//			trocaPainel(novoProfessor,panelProfessores,"iCall - Cadastrar professor");
-//		}
 	}
 }

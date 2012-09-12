@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CadastAluno extends JanelaPrincipal implements ActionListener{
+public class CadastAluno extends GerCadastrosAluno implements ActionListener{
 
 	final String systemSeparator = java.io.File.separator;
 	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
@@ -49,22 +49,17 @@ public class CadastAluno extends JanelaPrincipal implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == voltar){
-			trocaPainel(janelaPrincipal,cadastraAluno,"iCall");
-		}else if(e.getSource() == cadastAula){
-			trocaPainel(cadastraAula,cadastraAluno,"iCall - Cadastra aula");
-		}else if(e.getSource() == cadastAluno){
-			
-		}else if(e.getSource() == verificAulo){
-			trocaPainel(marcapresenca,cadastraAluno,"iCall - Marca presença");
-		}else if(e.getSource() == gerRelatorio){
-			trocaPainel(gerarRelatorio,cadastraAluno,"iCall - Gerar relatório");
-		}else if(e.getSource() == cadastAlunoAula){
-			trocaPainel(cadastraAlunos,cadastraAluno,"iCall - Cadastra aluno em aula");
-		}else if(e.getSource() == professores){
-			trocaPainel(panelProfessores,cadastraAluno,"iCall - Gerenciamento de contas");
-		}else if(e.getSource() == btsobre){
-			trocaPainel(panelSobre,cadastraAluno,"Sobre");
+		if(e.getSource() == modificar){
+		//	trocaPainel(editarProf,gerCadasAluno,"iCall - Editar cadastro");
+		}else if(e.getSource() == listar){
+		//	trocaPainel(listProf,gerCadasAluno,"iCall - Lista de cadastros");
+		}else if(e.getSource() == deletar){
+		//	trocaPainel(deletProf,gerCadasAluno,"iCall - Excluir cadastro");
+		}
+		else if(e.getSource() == novo){
+			trocaPainel(cadastraAluno,gerCadasAluno,"iCall - Cadastra aluno");
+		}else if(e.getSource() == voltar){
+			trocaPainel(gerCadasAluno,cadastraAluno,"iCall");
 		}else if(e.getSource() == cadastrar){
 			String matricula = numMatricula.getText().toString();
 			String nome = nomeAluno.getText().toString() ;

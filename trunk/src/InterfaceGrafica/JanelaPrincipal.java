@@ -99,30 +99,30 @@ public class JanelaPrincipal extends Main implements ActionListener{
     		esquerda.add(verificAulo);
     		verificAulo.setBounds(10, 10, 150, 20);
             esquerda.add(gerRelatorio);
-            gerRelatorio.setBounds(10, 40, 11550, 20);
+            gerRelatorio.setBounds(10, 40, 150, 20);
             esquerda.add(voltar);
             voltar.setBounds(10, 70, 150, 20);
     	}else{
-    		esquerda.add(cadastAluno);
-            cadastAluno.setBounds(10, 10, 150, 20);
-            esquerda.add(cadastAula);
-            cadastAula.setBounds(10, 40, 150, 20);
+    		esquerda.add(gerenciaAlunos);
+            gerenciaAlunos.setBounds(10, 10, 150, 20);
+            esquerda.add(gerenciaAulas);
+            gerenciaAulas.setBounds(10, 40, 150, 20);
             esquerda.add(cadastAlunoAula);
             cadastAlunoAula.setBounds(10, 70, 150, 20);
-            esquerda.add(gerenciaAlunos);
-            gerenciaAlunos.setBounds(10, 100, 150, 20);
-            esquerda.add(gerenciaAulas);
-            gerenciaAulas.setBounds(10, 130, 150, 20);
             esquerda.add(verificAulo);
-            verificAulo.setBounds(10, 160, 150, 20);
+            verificAulo.setBounds(10, 100, 150, 20);
             esquerda.add(gerRelatorio);
-            gerRelatorio.setBounds(10, 190, 150, 20);
+            gerRelatorio.setBounds(10, 130, 150, 20);
             esquerda.add(professores);
-            professores.setBounds(10, 220, 150, 20);
+            professores.setBounds(10, 160, 150, 20);
             esquerda.add(btsobre);
-			btsobre.setBounds(10, 250, 150, 20);
+            btsobre.setBounds(10, 190, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 280, 150, 20);
+            voltar.setBounds(10, 220, 150, 20);
+//            esquerda.add(btsobre);
+//			btsobre.setBounds(10, 250, 150, 20);
+//            esquerda.add(voltar);
+//            voltar.setBounds(10, 280, 150, 20);
     	}
         
         direita.setLayout(null);
@@ -169,9 +169,9 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		}else if(e.getSource() == cadastAluno){
 			trocaPainel(cadastraAluno,janelaPrincipal,"iCall - Cadastra aluno");
 		}else if(e.getSource() == gerenciaAlunos){
-			trocaPainel(gerCadas,janelaPrincipal,"iCall - Gerencia de cadastro");
+			trocaPainel(gerCadasAluno,janelaPrincipal,"iCall - Gerencia de cadastro");
 		}else if(e.getSource() == gerenciaAulas){
-			trocaPainel(gerCadas,janelaPrincipal,"iCall - Gerencia de cadastro");
+			trocaPainel(gerCadasAula,janelaPrincipal,"iCall - Gerencia de cadastro");
 		}else if(e.getSource() == verificAulo){
 			trocaPainel(marcapresenca,janelaPrincipal,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
