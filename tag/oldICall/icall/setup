@@ -1,0 +1,8 @@
+cd lib
+cd libfprint-master
+ls
+./autogen.sh && make && sudo make install
+cd examples
+make
+ln icall.sh ../../../icall.sh
+

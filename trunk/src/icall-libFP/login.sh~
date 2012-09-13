@@ -1,0 +1,2 @@
+sudo chmod -Rf 777 /dev/bus/usb/002
+
