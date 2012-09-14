@@ -28,13 +28,13 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	final JLabel label = new JLabel("iCall");
 	JButton cadastAula = new JButton("Cadastra aula");
 	JButton cadastAluno = new JButton("Cadastra aluno");
-	JButton cadastAlunoAula = new JButton("Preenche aulas");
 	JButton gerenciaAlunos = new JButton("Gerencia alunos");
-	JButton gerenciaAulas = new JButton("Gerencia aulas");
-	JButton verificAulo = new JButton("Marca presença");
-	JButton gerRelatorio = new JButton("Gerar relatório");
-	JButton professores = new JButton("Professores");
+	JButton gerenciaAulas = new JButton("Gerencia disc.");
+	JButton verificAulo = new JButton("Reg. presença");
+	JButton gerRelatorio = new JButton("relatórios");
+	JButton professores = new JButton("Gerencia prof.");
 	JButton btsobre = new JButton("Sobre");
+	JButton btajuda = new JButton("Ajuda");
 	JButton voltar = new JButton("Voltar");
 	
 	JPanel esquerda = new JPanel();
@@ -46,8 +46,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		cadastAluno.setToolTipText("Clique para cadastrar um novo aluno");
 		verificAulo.setToolTipText("Clique para marcar a presença de um aluno na aula");
 		gerenciaAlunos.setToolTipText("Editar ou excluir algum cadastro ou Listar todos os cadastrados");
-		gerenciaAulas.setToolTipText("Editar ou excluir algum cadastro ou Listar todos as aulas cadastradas");
-		cadastAlunoAula.setToolTipText("Clique para cadastrar alunos nas aulas");
+		gerenciaAulas.setToolTipText("Editar ou excluir algum cadastro ou Listar todos as disciplinas cadastradas cadastradas");
 		gerRelatorio.setToolTipText("Clique para gerar a lista de presença");
 		professores.setToolTipText("Clique para gerenciar o cadastro de professores");
 		voltar.setToolTipText("Clique para voltar a página inicial");
@@ -76,10 +75,6 @@ public class JanelaPrincipal extends Main implements ActionListener{
         gerRelatorio.setMnemonic(KeyEvent.VK_I);
         gerRelatorio.addActionListener(this);
         label.setLabelFor(gerRelatorio);
-        
-        cadastAlunoAula.setMnemonic(KeyEvent.VK_I);
-        cadastAlunoAula.addActionListener(this);
-        label.setLabelFor(cadastAlunoAula);
 
         professores.setMnemonic(KeyEvent.VK_I);
         professores.addActionListener(this);
@@ -88,7 +83,11 @@ public class JanelaPrincipal extends Main implements ActionListener{
         btsobre.setMnemonic(KeyEvent.VK_I);
 		btsobre.addActionListener(this);
 		label.setLabelFor(btsobre);
-        
+		
+		btajuda.setMnemonic(KeyEvent.VK_I);
+		btajuda.addActionListener(this);
+		label.setLabelFor(btajuda);
+		
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
@@ -107,22 +106,16 @@ public class JanelaPrincipal extends Main implements ActionListener{
             gerenciaAlunos.setBounds(10, 10, 150, 20);
             esquerda.add(gerenciaAulas);
             gerenciaAulas.setBounds(10, 40, 150, 20);
-            esquerda.add(cadastAlunoAula);
-            cadastAlunoAula.setBounds(10, 70, 150, 20);
-            esquerda.add(verificAulo);
-            verificAulo.setBounds(10, 100, 150, 20);
-            esquerda.add(gerRelatorio);
-            gerRelatorio.setBounds(10, 130, 150, 20);
             esquerda.add(professores);
-            professores.setBounds(10, 160, 150, 20);
+            professores.setBounds(10, 70, 150, 20);
+            esquerda.add(gerRelatorio);
+            gerRelatorio.setBounds(10, 100, 150, 20);
             esquerda.add(btsobre);
-            btsobre.setBounds(10, 190, 150, 20);
+            btsobre.setBounds(10, 130, 150, 20);
+            esquerda.add(btajuda);
+            btajuda.setBounds(10, 160, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 220, 150, 20);
-//            esquerda.add(btsobre);
-//			btsobre.setBounds(10, 250, 150, 20);
-//            esquerda.add(voltar);
-//            voltar.setBounds(10, 280, 150, 20);
+            voltar.setBounds(10, 190, 150, 20);
     	}
         
         direita.setLayout(null);
@@ -176,8 +169,6 @@ public class JanelaPrincipal extends Main implements ActionListener{
 			trocaPainel(marcapresenca,janelaPrincipal,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
 			trocaPainel(gerarRelatorio,janelaPrincipal,"iCall - Gerar relatório");
-		}else if(e.getSource() == cadastAlunoAula){
-			trocaPainel(cadastraAlunos,janelaPrincipal,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == professores){
 			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Gerenciamento de contas");
 		}else if(e.getSource() == btsobre){

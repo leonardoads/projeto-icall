@@ -45,8 +45,6 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Você ja esta ai");
 		}else if(e.getSource() == gerRelatorio){
 
-		}else if(e.getSource() == cadastAlunoAula){
-			trocaPainel(cadastraAlunos,marcapresenca,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == iniciar){
 			if(!tempo.getText().trim().equals("") ){
 				try{
