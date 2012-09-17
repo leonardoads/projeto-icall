@@ -56,12 +56,12 @@ public class CadastAula extends GerCadastrosAula implements ActionListener{
 		if(e.getSource() == modificar){
 		//	trocaPainel(editarProf,gerCadasAula,"iCall - Editar cadastro");
 		}else if(e.getSource() == listar){
-		//	trocaPainel(listProf,gerCadasAula,"iCall - Lista de cadastros");
+			trocaPainel(listarAulas,cadastraAula,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
 		//	trocaPainel(deletProf,gerCadasAula,"iCall - Excluir cadastro");
 		}
 		else if(e.getSource() == novo){
-			trocaPainel(cadastraAula,gerCadasAula,"iCall - Cadastra aula");
+			trocaPainel(cadastraAula,cadastraAula,"iCall - Cadastra aula");
 		}else if(e.getSource() == voltar){
 			trocaPainel(gerCadasAula,cadastraAula,"iCall");
 		}else if(e.getSource() == cadastAlunoAula){

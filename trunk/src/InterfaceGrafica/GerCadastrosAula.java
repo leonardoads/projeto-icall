@@ -15,7 +15,7 @@ public class GerCadastrosAula extends GerCadastros{
 		}else if(e.getSource() == modificar){
 			//trocaPainel(editarProf,gerCadasAula,"iCall - Editar cadastro");
 		}else if(e.getSource() == listar){
-			//trocaPainel(listProf,gerCadasAula,"iCall - Lista de cadastros");
+			trocaPainel(listarAulas,gerCadasAula,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
 			//trocaPainel(deletProf,gerCadasAula,"iCall - Excluir cadastro");
 		}

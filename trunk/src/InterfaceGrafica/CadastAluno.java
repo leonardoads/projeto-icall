@@ -28,36 +28,22 @@ public class CadastAluno extends GerCadastrosAluno implements ActionListener{
 	
 	JLabel labelAluno = new JLabel("Digite o nome do aluno");
 	JLabel labelMatricula = new JLabel("Digite a matricula");
-	
-	JButton cadastrar = new JButton("Cadastra");
-	
 	JTextField nomeAluno = new JTextField();
 	JTextField numMatricula = new JTextField();
-	
-	
-	JPanel panelAluno= new JPanel(new GridLayout(0,1));
-	JPanel panelAula= new JPanel(new GridLayout(0,1));
-	JPanel panelButton= new JPanel(new GridLayout(0,1));
-	JPanel panelAulas= new JPanel(new GridLayout(0,1));
-	JPanel panelNomeAluno= new JPanel(new GridLayout(0,1));
-	
-	JPanel aluno= new JPanel(new GridLayout(0,1));
-	JPanel aula= new JPanel(new GridLayout(0,1));
-	
-	JPanel painel= new JPanel(new GridLayout(0,1));
-	String[] nomeAulas;
+
+	JButton cadastrar = new JButton("Cadastra");
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == modificar){
 		//	trocaPainel(editarProf,gerCadasAluno,"iCall - Editar cadastro");
 		}else if(e.getSource() == listar){
-		//	trocaPainel(listProf,gerCadasAluno,"iCall - Lista de cadastros");
+			trocaPainel(listarAlunos,cadastraAluno,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
 		//	trocaPainel(deletProf,gerCadasAluno,"iCall - Excluir cadastro");
 		}
 		else if(e.getSource() == novo){
-			trocaPainel(cadastraAluno,gerCadasAluno,"iCall - Cadastra aluno");
+			trocaPainel(cadastraAluno,cadastraAluno,"iCall - Cadastra aluno");
 		}else if(e.getSource() == voltar){
 			trocaPainel(gerCadasAluno,cadastraAluno,"iCall");
 		}else if(e.getSource() == cadastrar){

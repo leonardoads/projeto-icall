@@ -49,7 +49,7 @@ public class CadastAlunoAula extends GerCadastrosAula implements ActionListener{
 		}else if(e.getSource() == modificar){
 			//trocaPainel(editarProf,cadastraAlunos,"iCall - Editar cadastro");
 		}else if(e.getSource() == listar){
-			//trocaPainel(listProf,cadastraAlunos,"iCall - Lista de cadastros");
+			trocaPainel(listarAulas,cadastraAlunos,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
 			//trocaPainel(deletProf,cadastraAlunos,"iCall - Excluir cadastro");
 		}
@@ -80,7 +80,7 @@ public class CadastAlunoAula extends GerCadastrosAula implements ActionListener{
 			String alunos = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"enroll.icall");
 			String[] arrayAlunos = alunos.split("\n");
 			nomeAlunos = new String[arrayAlunos.length];
-			for(int i=0;i<arrayAulas.length;i++){
+			for(int i=0;i<arrayAlunos.length;i++){
 				nomeAlunos[i] = arrayAlunos[i].split("##")[0];
 				comboAlunos.addItem(arrayAlunos[i].split("##")[0] +" - "+arrayAlunos[i].split("##")[1]);
 				
