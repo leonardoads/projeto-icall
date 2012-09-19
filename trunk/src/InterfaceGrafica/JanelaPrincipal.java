@@ -3,12 +3,12 @@ package InterfaceGrafica;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,13 +26,11 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
-	JButton cadastAula = new JButton("Cadastra aula");
-	JButton cadastAluno = new JButton("Cadastra aluno");
-	JButton gerenciaAlunos = new JButton("Gerencia alunos");
-	JButton gerenciaAulas = new JButton("Gerencia disc.");
+	JButton gerenciaAlunos = new JButton("Alunos");
+	JButton gerenciaAulas = new JButton("Disciplinas");
 	JButton verificAulo = new JButton("Reg. presença");
-	JButton gerRelatorio = new JButton("relatórios");
-	JButton professores = new JButton("Gerencia prof.");
+	JButton gerRelatorio = new JButton("Relatórios");
+	JButton professores = new JButton("Professor");
 	JButton btsobre = new JButton("Sobre");
 	JButton btajuda = new JButton("Ajuda");
 	JButton voltar = new JButton("Voltar");
@@ -42,8 +40,6 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	
 	
 	public void colocaAjuda(){
-		cadastAula.setToolTipText("Clique para cadastrar uma nova aula");
-		cadastAluno.setToolTipText("Clique para cadastrar um novo aluno");
 		verificAulo.setToolTipText("Clique para marcar a presença de um aluno na aula");
 		gerenciaAlunos.setToolTipText("Editar ou excluir algum cadastro ou Listar todos os cadastrados");
 		gerenciaAulas.setToolTipText("Editar ou excluir algum cadastro ou Listar todos as disciplinas cadastradas cadastradas");
@@ -52,47 +48,33 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		voltar.setToolTipText("Clique para voltar a página inicial");
 	}
 	public void criaPainel(){
-		cadastAula.setMnemonic(KeyEvent.VK_I);
-		cadastAula.addActionListener(this);
-        label.setLabelFor(cadastAula);
-        
-        cadastAluno.setMnemonic(KeyEvent.VK_I);
-        cadastAluno.addActionListener(this);
-        label.setLabelFor(cadastAluno);
-        
         verificAulo.setMnemonic(KeyEvent.VK_I);
         verificAulo.addActionListener(this);
-        label.setLabelFor(verificAulo);
         
         gerenciaAlunos.setMnemonic(KeyEvent.VK_I);
         gerenciaAlunos.addActionListener(this);
-        label.setLabelFor(gerenciaAlunos);
         
         gerenciaAulas.setMnemonic(KeyEvent.VK_I);
         gerenciaAulas.addActionListener(this);
-        label.setLabelFor(gerenciaAulas);
         
         gerRelatorio.setMnemonic(KeyEvent.VK_I);
         gerRelatorio.addActionListener(this);
-        label.setLabelFor(gerRelatorio);
 
         professores.setMnemonic(KeyEvent.VK_I);
         professores.addActionListener(this);
-        label.setLabelFor(professores);
         
         btsobre.setMnemonic(KeyEvent.VK_I);
 		btsobre.addActionListener(this);
-		label.setLabelFor(btsobre);
 		
 		btajuda.setMnemonic(KeyEvent.VK_I);
 		btajuda.addActionListener(this);
-		label.setLabelFor(btajuda);
 		
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
-        label.setLabelFor(voltar);
 		
-		local.setText(tipoUsuario);
+		local.setText("iCall");
+		local.setForeground(new Color(250,250,250));
+		local.setFont(new Font("Arial",Font.BOLD,19));
 		
 		if(tipoUsuario.equals("PROFESSOR")){
     		esquerda.add(verificAulo);
@@ -100,7 +82,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
             esquerda.add(gerRelatorio);
             gerRelatorio.setBounds(10, 40, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 70, 150, 20);
+            voltar.setBounds(10, 100, 150, 20);
     	}else{
     		esquerda.add(gerenciaAlunos);
             gerenciaAlunos.setBounds(10, 10, 150, 20);
@@ -111,11 +93,11 @@ public class JanelaPrincipal extends Main implements ActionListener{
             esquerda.add(gerRelatorio);
             gerRelatorio.setBounds(10, 100, 150, 20);
             esquerda.add(btsobre);
-            btsobre.setBounds(10, 130, 150, 20);
+            btsobre.setBounds(10, 160, 150, 20);
             esquerda.add(btajuda);
-            btajuda.setBounds(10, 160, 150, 20);
+            btajuda.setBounds(10, 190, 150, 20);
             esquerda.add(voltar);
-            voltar.setBounds(10, 190, 150, 20);
+            voltar.setBounds(10, 220, 150, 20);
     	}
         
         direita.setLayout(null);
@@ -157,20 +139,16 @@ public class JanelaPrincipal extends Main implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == voltar){
 			trocaPainel(login,janelaPrincipal,"iCall - Cadastra aula");
-		}else if(e.getSource() == cadastAula){
-			trocaPainel(cadastraAula,janelaPrincipal,"iCall - Cadastra aula");
-		}else if(e.getSource() == cadastAluno){
-			trocaPainel(cadastraAluno,janelaPrincipal,"iCall - Cadastra aluno");
 		}else if(e.getSource() == gerenciaAlunos){
-			trocaPainel(gerCadasAluno,janelaPrincipal,"iCall - Gerencia de cadastro");
+			trocaPainel(gerCadasAluno,janelaPrincipal,"iCall - Alunos");
 		}else if(e.getSource() == gerenciaAulas){
-			trocaPainel(gerCadasAula,janelaPrincipal,"iCall - Gerencia de cadastro");
+			trocaPainel(gerCadasAula,janelaPrincipal,"iCall - Aulas");
 		}else if(e.getSource() == verificAulo){
 			trocaPainel(marcapresenca,janelaPrincipal,"iCall - Marca presença");
 		}else if(e.getSource() == gerRelatorio){
-			trocaPainel(gerarRelatorio,janelaPrincipal,"iCall - Gerar relatório");
+			trocaPainel(gerarRelatorio,janelaPrincipal,"iCall - Relatórios");
 		}else if(e.getSource() == professores){
-			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Gerenciamento de contas");
+			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Professores");
 		}else if(e.getSource() == btsobre){
 		//	trocaPainel(panelSobre,janelaPrincipal,"Sobre");
 		}

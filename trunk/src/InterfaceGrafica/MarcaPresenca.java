@@ -37,14 +37,8 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == voltar){
 			trocaPainel(janelaPrincipal,marcapresenca,"iCall");
-		}else if(e.getSource() == cadastAula){
-			trocaPainel(cadastraAula,marcapresenca,"iCall - Cadastra aula");
-		}else if(e.getSource() == cadastAluno){
-			trocaPainel(cadastraAluno,marcapresenca,"iCall - Cadastra aluno");
 		}else if(e.getSource() == verificAulo){
 			JOptionPane.showMessageDialog(null, "Você ja esta ai");
-		}else if(e.getSource() == gerRelatorio){
-
 		}else if(e.getSource() == iniciar){
 			if(!tempo.getText().trim().equals("") ){
 				try{
