@@ -24,7 +24,7 @@ import javax.swing.ListSelectionModel;
 
 import classes.LerArquivo;
 
-public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
+public class CadastAlunoAula extends GerCadastrosAula implements ActionListener{
 	final String systemSeparator = java.io.File.separator;
 	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
 			+ "iCall" + systemSeparator;
@@ -45,20 +45,16 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == voltar){
-			trocaPainel(janelaPrincipal,cadastraAlunos,"iCall");
-		}else if(e.getSource() == cadastAula){
-			trocaPainel(cadastraAula,cadastraAlunos,"iCall - Cadastra aula");
-		}else if(e.getSource() == cadastAluno){
-			trocaPainel(cadastraAluno,cadastraAlunos,"iCall - Cadastra aluno");
-		}else if(e.getSource() == verificAulo){
-			trocaPainel(marcapresenca,cadastraAlunos,"iCall - Marca presença");
-		}else if(e.getSource() == gerRelatorio){
-			trocaPainel(gerarRelatorio,cadastraAlunos,"iCall - Gerar relatório");
-		}else if(e.getSource() == professores){
-			trocaPainel(panelProfessores,cadastraAlunos,"iCall - Gerenciamento de contas");
+			trocaPainel(gerCadasAula,cadastraAlunos,"iCall");
+		}else if(e.getSource() == modificar){
+			//trocaPainel(editarProf,cadastraAlunos,"iCall - Editar cadastro");
+		}else if(e.getSource() == listar){
+			trocaPainel(listarAulas,cadastraAlunos,"iCall - Lista de cadastros");
+		}else if(e.getSource() == deletar){
+			//trocaPainel(deletProf,cadastraAlunos,"iCall - Excluir cadastro");
 		}
-		else if(e.getSource() == btsobre){
-			trocaPainel(panelSobre,cadastraAlunos,"Sobre");
+		else if(e.getSource() == novo){
+			trocaPainel(cadastraAula,cadastraAlunos,"iCall - Cadastra aula");
 		}else if(e.getSource() == cadastrar){
 			String aula = comboAulas.getSelectedItem().toString();
 			String aluno = comboAlunos.getSelectedItem().toString();
@@ -84,7 +80,7 @@ public class CadastAlunoAula extends JanelaPrincipal implements ActionListener{
 			String alunos = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"enroll.icall");
 			String[] arrayAlunos = alunos.split("\n");
 			nomeAlunos = new String[arrayAlunos.length];
-			for(int i=0;i<arrayAulas.length;i++){
+			for(int i=0;i<arrayAlunos.length;i++){
 				nomeAlunos[i] = arrayAlunos[i].split("##")[0];
 				comboAlunos.addItem(arrayAlunos[i].split("##")[0] +" - "+arrayAlunos[i].split("##")[1]);
 				

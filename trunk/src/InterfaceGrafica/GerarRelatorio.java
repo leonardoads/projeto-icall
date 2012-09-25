@@ -45,11 +45,7 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 
 		if (e.getSource() == voltar) {
 			trocaPainel(janelaPrincipal, gerarRelatorio, "iCall");
-		} else if (e.getSource() == cadastAula) {
-			trocaPainel(cadastraAula, gerarRelatorio, "iCall - Cadastra aula");
-		} else if (e.getSource() == cadastAluno) {
-			trocaPainel(cadastraAluno, gerarRelatorio, "iCall - Cadastra aluno");
-		} else if (e.getSource() == verificAulo) {
+		}else if (e.getSource() == verificAulo) {
 			trocaPainel(marcapresenca, gerarRelatorio, "iCall - Marca presença");
 		}else if(e.getSource() == btsobre){
 			trocaPainel(panelSobre,gerarRelatorio,"Sobre");
@@ -58,9 +54,6 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		} else if (e.getSource() == professores) {
 			trocaPainel(panelProfessores, gerarRelatorio,
 					"iCall - Gerenciamento de contas");
-		} else if (e.getSource() == cadastAlunoAula) {
-			trocaPainel(cadastraAlunos, gerarRelatorio,
-					"iCall - Cadastra aluno em aula");
 		}else if (e.getSource() == presenca) {
 
 			JFileChooser salvandoArquivo = new JFileChooser();
