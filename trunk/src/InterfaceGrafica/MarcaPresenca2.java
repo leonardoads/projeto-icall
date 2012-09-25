@@ -41,16 +41,8 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 		if(e.getSource() == voltar){
 			trocaPainel(marcapresenca,marcapresenca2,"iCall - Marca presença");
 			this.matricula.setText("");
-		}else if(e.getSource() == cadastAula){
-			trocaPainel(cadastraAula,marcapresenca2,"iCall - Cadastra aula");
-		}else if(e.getSource() == cadastAluno){
-			trocaPainel(cadastraAluno,marcapresenca2,"iCall - Cadastra aluno");
 		}else if(e.getSource() == verificAulo){
 			JOptionPane.showMessageDialog(null, "Você ja esta ai");
-		}else if(e.getSource() == gerRelatorio){
-
-		}else if(e.getSource() == cadastAlunoAula){
-			trocaPainel(cadastraAlunos,marcapresenca2,"iCall - Cadastra aluno em aula");
 		}else if(e.getSource() == computar){
 			String matricula = this.matricula.getText().toString();
 			this.matricula.setText("");

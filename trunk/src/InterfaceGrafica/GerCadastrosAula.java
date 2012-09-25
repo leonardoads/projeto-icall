@@ -1,46 +1,29 @@
 package InterfaceGrafica;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-public class GerCadastros extends Main implements ActionListener{
-	final String systemSeparator = java.io.File.separator;
-	final String ICALLLOGO = System.getProperty("user.home") + systemSeparator
-			+ ".iCall" + systemSeparator +"logo-Icall.png";
-
-	JPanel painelFinal = new JPanel(new BorderLayout(1, 0));
-	JPanel painelFinalTroca = new JPanel();
-
-	JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
-	
-	JPanel painel= new JPanel(new GridLayout(0,1));
-	final JLabel label = new JLabel("iCall");
-	
-	JButton novo = new JButton("Novo");
-	JButton modificar = new JButton("Modificar");
-	JButton listar = new JButton("Listar");
-	JButton deletar = new JButton("Excluir");
-	JButton voltar = new JButton("Voltar");
-	
-	JPanel esquerda = new JPanel();
-	JPanel direita = new JPanel(new BorderLayout(0, 1));
-	
-	public void colocaAjuda(){
-		novo.setToolTipText("Novo cadastro");
-		modificar.setToolTipText("Modificar uma conta de professor");
-		listar.setToolTipText("Lista de professores cadastrados");
-		deletar.setToolTipText("Deletar o cadastro de um professor");
-		voltar.setToolTipText("Clique para voltar a página inicial");
+public class GerCadastrosAula extends GerCadastros{
+	JButton cadastAlunoAula = new JButton("Preenche aulas");
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == voltar){
+			trocaPainel(janelaPrincipal,gerCadasAula,"iCall");
+		}else if(e.getSource() == modificar){
+			//trocaPainel(editarProf,gerCadasAula,"iCall - Editar cadastro");
+		}else if(e.getSource() == listar){
+			trocaPainel(listarAulas,gerCadasAula,"iCall - Lista de cadastros");
+		}else if(e.getSource() == deletar){
+			//trocaPainel(deletProf,gerCadasAula,"iCall - Excluir cadastro");
+		}
+		else if(e.getSource() == novo){
+			trocaPainel(cadastraAula,gerCadasAula,"iCall - Cadastra aula");
+		}else if(e.getSource() == cadastAlunoAula){
+			trocaPainel(cadastraAlunos,gerCadasAula,"iCall - Cadastra aluno em aula");
+		}
 	}
 	public void criaPainel(){
 		local.setText("Gerencia de cadastros");
@@ -64,6 +47,10 @@ public class GerCadastros extends Main implements ActionListener{
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
         label.setLabelFor(voltar);
+        
+        cadastAlunoAula.setMnemonic(KeyEvent.VK_I);
+        cadastAlunoAula.addActionListener(this);
+        label.setLabelFor(cadastAlunoAula);
 		
     	esquerda.add(novo);
     	novo.setBounds(10, 10, 150, 20);
@@ -73,8 +60,10 @@ public class GerCadastros extends Main implements ActionListener{
         deletar.setBounds(10, 70, 150, 20);
         esquerda.add(listar);
         listar.setBounds(10, 100, 150, 20);
+        esquerda.add(cadastAlunoAula);
+        cadastAlunoAula.setBounds(10, 130, 150, 20);    	
         esquerda.add(voltar);
-        voltar.setBounds(10, 130, 150, 20);    	
+        voltar.setBounds(10, 160, 150, 20);
         
         direita.setLayout(null);
         painelFinalTroca.setLayout(null);
@@ -91,7 +80,7 @@ public class GerCadastros extends Main implements ActionListener{
     	painelFinalTroca.setBounds(0, 0, 500, 250);
     	
     	image.add(esquerda);
-    	esquerda.setBounds(0, 0, 160, 300);	
+    	esquerda.setBounds(0, 0, 160, 400);	
     	
     	direita.setBackground(new Color(255,255,255,0));  
     	
@@ -99,19 +88,5 @@ public class GerCadastros extends Main implements ActionListener{
     	direita.setBounds(180, 10, 500, 350);
     	
     	painelFinal.add(image);
-	}
-	public void criaPainelTroca(){
-		
-	}
-	public Component panel(){
-		colocaAjuda();
-		criaPainelTroca();
-		criaPainel();
-		
-		return painelFinal;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
 	}
 }
