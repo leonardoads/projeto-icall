@@ -13,11 +13,11 @@ public class GerCadastrosAula extends GerCadastros{
 		if(e.getSource() == voltar){
 			trocaPainel(janelaPrincipal,gerCadasAula,"iCall");
 		}else if(e.getSource() == modificar){
-			//trocaPainel(editarProf,gerCadasAula,"iCall - Editar cadastro");
+
 		}else if(e.getSource() == listar){
 			trocaPainel(listarAulas,gerCadasAula,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
-			//trocaPainel(deletProf,gerCadasAula,"iCall - Excluir cadastro");
+
 		}
 		else if(e.getSource() == novo){
 			trocaPainel(cadastraAula,gerCadasAula,"iCall - Cadastra aula");
@@ -26,31 +26,25 @@ public class GerCadastrosAula extends GerCadastros{
 		}
 	}
 	public void criaPainel(){
-		local.setText("Gerencia de cadastros");
+		local.setText("Disciplinas");
 		
 		novo.setMnemonic(KeyEvent.VK_I);
 		novo.addActionListener(this);
-        label.setLabelFor(novo);
         
         modificar.setMnemonic(KeyEvent.VK_I);
         modificar.addActionListener(this);
-        label.setLabelFor(modificar);
         
         deletar.setMnemonic(KeyEvent.VK_I);
         deletar.addActionListener(this);
-        label.setLabelFor(deletar);
         
         listar.setMnemonic(KeyEvent.VK_I);
         listar.addActionListener(this);
-        label.setLabelFor(listar);
         
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
-        label.setLabelFor(voltar);
         
         cadastAlunoAula.setMnemonic(KeyEvent.VK_I);
         cadastAlunoAula.addActionListener(this);
-        label.setLabelFor(cadastAlunoAula);
 		
     	esquerda.add(novo);
     	novo.setBounds(10, 10, 150, 20);
@@ -58,12 +52,8 @@ public class GerCadastrosAula extends GerCadastros{
         modificar.setBounds(10, 40, 150, 20);
         esquerda.add(deletar);
         deletar.setBounds(10, 70, 150, 20);
-        esquerda.add(listar);
-        listar.setBounds(10, 100, 150, 20);
-        esquerda.add(cadastAlunoAula);
-        cadastAlunoAula.setBounds(10, 130, 150, 20);    	
         esquerda.add(voltar);
-        voltar.setBounds(10, 160, 150, 20);
+        voltar.setBounds(10, 130, 150, 20);    	
         
         direita.setLayout(null);
         painelFinalTroca.setLayout(null);

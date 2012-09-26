@@ -32,7 +32,7 @@ struct fp_dscv_dev *discover_device(struct fp_dscv_dev **discovered_devs)
 		return NULL;
 	
 	drv = fp_dscv_dev_get_driver(ddev);
-	printf("Found device claimed by %s driver\n", fp_driver_get_full_name(drv));
+	//printf("Found device claimed by %s driver\n", fp_driver_get_full_name(drv));
 	return ddev;
 }
 
@@ -44,11 +44,13 @@ int verify(struct fp_dev *dev, struct fp_print_data *data)
 		struct fp_img *img = NULL;
 
 		sleep(1);
-		printf("\nScan your finger now.\n");
+		system("dialog --infobox 'Scan your finger now.' 5 30");
+		//printf("\nScan your finger now.\n");
 		r = fp_verify_finger_img(dev, data, &img);
 		if (img) {
 			fp_img_save_to_file(img, "verify.pgm");
-			printf("Wrote scanned image to verify.pgm\n");
+			system("dialog --infobox 'Wrote scanned image to verify.pgm' 5 30");
+			//printf("Wrote scanned image to verify.pgm\n");
 			fp_img_free(img);
 		}
 		if (r < 0) {
@@ -57,24 +59,30 @@ int verify(struct fp_dev *dev, struct fp_print_data *data)
 		}
 		switch (r) {
 		case FP_VERIFY_NO_MATCH:
-			system("./ErroVerificacao");			
+			//system("./ErroVerificacao");
+			system("dialog --infobox 'NO MATCH' 5 30");			
 			//printf("NO MATCHinhoohohoohoohohoo!\n");
 			return 0;
 		case FP_VERIFY_MATCH:
-			system("./verificado");
+			//system("./verificado");
+			system("dialog --infobox 'MATCH' 5 30");	
 			//printf("MATCH!\n");
 			return 0;
 		case FP_VERIFY_RETRY:
-			printf("Scan didn't quite work. Please try again.\n");
+			system("dialog --infobox 'Scan didn't quite work. Please try again.' 5 30");	
+			//printf("Scan didn't quite work. Please try again.\n");
 			break;
 		case FP_VERIFY_RETRY_TOO_SHORT:
-			printf("Swipe was too short, please try again.\n");
+			system("dialog --infobox 'Swipe was too short, please try again.' 5 30");
+		//	printf("Swipe was too short, please try again.\n");
 			break;
 		case FP_VERIFY_RETRY_CENTER_FINGER:
-			printf("Please center your finger on the sensor and try again.\n");
+			system("dialog --infobox 'Please center your finger on the sensor and try again.' 5 30");
+		//	printf("Please center your finger on the sensor and try again.\n");
 			break;
 		case FP_VERIFY_RETRY_REMOVE_FINGER:
-			printf("Please remove finger from the sensor and try again.\n");
+			system("dialog --infobox 'Please remove finger from the sensor and try again.' 5 30");
+		//	printf("Please remove finger from the sensor and try again.\n");
 			break;
 		}
 	} while (1);
@@ -114,8 +122,9 @@ int main(void)
 		goto out;
 	}
 
-	printf("Opened device. Loading previously enrolled right index finger "
-		"data...\n");
+	system("dialog --infobox 'Opened device. Loading previously enrolled right index finger data...' 5 30");	
+	//printf("Opened device. Loading previously enrolled right index finger "
+	//	"data...\n");
 
 	r = fp_print_data_load(dev, RIGHT_INDEX, &data);
 	if (r != 0) {
@@ -124,8 +133,8 @@ int main(void)
 			"first?\n");
 		goto out_close;
 	}
-
-	printf("Print loaded. Time to verify!\n");
+	system("dialog --infobox 'Print loaded. Time to verify!' 5 30");	
+//	printf("Print loaded. Time to verify!\n");
 	do {
 		char buffer[20];
 
@@ -135,7 +144,7 @@ int main(void)
 		//if (buffer[0] != '\n' && buffer[0] != 'y' && buffer[0] != 'Y')
 		break;
 	} while (1);
-
+	sleep(10);
 	fp_print_data_free(data);
 out_close:
 	fp_dev_close(dev);

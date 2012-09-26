@@ -104,10 +104,7 @@ int main(void)
 	struct fp_dev *dev;
 	struct fp_print_data *data;
 
-	printf("This program will enroll your right index finger, "
-		"unconditionally overwriting any right-index print that was enrolled "
-		"previously. If you want to continue, press enter, otherwise hit "
-		"Ctrl+C\n");
+	printf("Enter ou ctrl+c\n");
 	getchar();
 
 	r = fp_init();
