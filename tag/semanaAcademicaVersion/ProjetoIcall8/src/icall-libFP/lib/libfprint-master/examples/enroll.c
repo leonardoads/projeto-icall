@@ -32,7 +32,7 @@ struct fp_dscv_dev *discover_device(struct fp_dscv_dev **discovered_devs)
 		return NULL;
 	
 	drv = fp_dscv_dev_get_driver(ddev);
-	printf("Found device claimed by %s driver\n", fp_driver_get_full_name(drv));
+	//printf("Found device claimed by %s driver\n", fp_driver_get_full_name(drv));
 	return ddev;
 }
 
@@ -40,59 +40,60 @@ struct fp_print_data *enroll(struct fp_dev *dev) {
 	struct fp_print_data *enrolled_print = NULL;
 	int r;
 
-	printf("You will need to successfully scan your finger %d times to "
-		"complete the process.\n", fp_dev_get_nr_enroll_stages(dev));
-
+	//system("dialog --infobox 'Dispositivo encontrado, passe o seu dedo indicador da mão"
+	// "direita no leitor "" vezes' 5 30");
+	
+	//printf("You will need to successfully scan your finger %d times to "
+	//	"complete the process.\n", fp_dev_get_nr_enroll_stages(dev));
+	system("dialog --infobox 'Passe o dedo indicador da mão direita, apos concluido o cadastro, aparecera uma mensagem informando' 10 30");
 	do {
 		struct fp_img *img = NULL;
 	
 		sleep(1);
-		printf("\nScan your finger now.\n");
 
 		r = fp_enroll_finger_img(dev, &enrolled_print, &img);
 		if (img) {
 			fp_img_save_to_file(img, "enrolled.pgm");
-			printf("Wrote scanned image to enrolled.pgm\n");
+			system("dialog --infobox 'Escreveu imagem digitalizada para enrolled.pgm' 5 30");
 			fp_img_free(img);
 		}
 		if (r < 0) {
-			printf("Enroll failed with error %d\n", r);
+			printf("Enrrol deu erro %d\n", r);
 			return NULL;
 		}
 
 		switch (r) {
 		case FP_ENROLL_COMPLETE:
-			printf("Enroll complete!\n");
+			system("dialog --infobox 'Enroll completo!' 5 30");
 			break;
 		case FP_ENROLL_FAIL:
-			printf("Enroll failed, something wen't wrong :(\n");
+			system("dialog --infobox 'Enroll failed, something wen't wrong :(' 10 30");
 			return NULL;
 		case FP_ENROLL_PASS:
-			printf("Enroll stage passed. Yay!\n");
+			system("dialog --infobox 'OK passe seu dedo novamente!' 5 30");
 			break;
 		case FP_ENROLL_RETRY:
-			printf("Didn't quite catch that. Please try again.\n");
+			system("dialog --infobox 'Didn't quite catch that. Please try again.' 10 30");
 			break;
 		case FP_ENROLL_RETRY_TOO_SHORT:
-			printf("Your swipe was too short, please try again.\n");
+			system("dialog --infobox 'Your swipe was too short, please try again.' 5 30");
 			break;
 		case FP_ENROLL_RETRY_CENTER_FINGER:
-			printf("Didn't catch that, please center your finger on the "
-				"sensor and try again.\n");
+			system("dialog --infobox 'Didn't catch that, please center your finger on the "
+				"sensor and try again.' 7 30");
 			break;
 		case FP_ENROLL_RETRY_REMOVE_FINGER:
-			printf("Scan failed, please remove your finger and then try "
-				"again.\n");
+			system("dialog --infobox 'Scan failed, please remove your finger and then try "
+				"again.' 5 30");
 			break;
 		}
 	} while (r != FP_ENROLL_COMPLETE);
 
 	if (!enrolled_print) {
-		fprintf(stderr, "Enroll complete but no print?\n");
+		system("dialog --infobox 'Enroll complete but no print?' 5 30");
 		return NULL;
 	}
-
-	printf("Enrollment completed!\n\n");
+	system("dialog --infobox 'Enrollment completed!' 5 30");
 	return enrolled_print;
 }
 
@@ -103,47 +104,44 @@ int main(void)
 	struct fp_dscv_dev **discovered_devs;
 	struct fp_dev *dev;
 	struct fp_print_data *data;
-
-	printf("This program will enroll your right index finger, "
-		"unconditionally overwriting any right-index print that was enrolled "
-		"previously. If you want to continue, press enter, otherwise hit "
-		"Ctrl+C\n");
+	
+	system("dialog --infobox 'Precione enter para continuar' 5 30");
 	getchar();
 
 	r = fp_init();
 	if (r < 0) {
-		fprintf(stderr, "Failed to initialize libfprint\n");
+		fprintf(stderr, "Falha na inicialização da libfprint\n");
 		exit(1);
 	}
 	fp_set_debug(3);
 
 	discovered_devs = fp_discover_devs();
 	if (!discovered_devs) {
-		fprintf(stderr, "Could not discover devices\n");
+		fprintf(stderr, "Não foi possível descobrir dispositivos\n");
 		goto out;
 	}
 
 	ddev = discover_device(discovered_devs);
 	if (!ddev) {
-		fprintf(stderr, "No devices detected.\n");
+		fprintf(stderr, "Não foi detectado um dispositivo.\n");
 		goto out;
 	}
 
 	dev = fp_dev_open(ddev);
 	fp_dscv_devs_free(discovered_devs);
 	if (!dev) {
-		fprintf(stderr, "Could not open device.\n");
+		fprintf(stderr, "Não foi possível abrir o dispositivoCould not open device.\n");
 		goto out;
 	}
 
-	printf("Opened device. It's now time to enroll your finger.\n\n");
+	system("dialog --infobox 'Inaugurado dispositivo. É agora tempo de inscrever o seu dedo' 5 30");
 	data = enroll(dev);
 	if (!data)
 		goto out_close;
 
 	r = fp_print_data_save(data, RIGHT_INDEX);
 	if (r < 0)
-		fprintf(stderr, "Data save failed, code %d\n", r);
+		fprintf(stderr, "Falha ao salvar dados, codigo %d\n", r);
 
 	fp_print_data_free(data);
 out_close:
