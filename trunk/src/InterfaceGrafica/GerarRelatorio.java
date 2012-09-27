@@ -11,14 +11,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-
 import classes.LerArquivo;
 
 public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
@@ -30,19 +27,15 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 	JComboBox comboAulas = new JComboBox();
 	JButton presenca = new JButton("Presença");
 	JButton matriculados = new JButton("Matriculados");
-
 	String[] nomeAulas;
 	String copiar;
 	PrintWriter pw;
-
-	private FileWriter out = null;
 	private FileReader arq = null;
 	private BufferedReader buffer = null;
 	private List<String> linhas = new ArrayList<String>();
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		if (e.getSource() == voltar) {
 			trocaPainel(janelaPrincipal, gerarRelatorio, "iCall");
 		}else if (e.getSource() == verificAulo) {
@@ -155,11 +148,9 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		}
 		presenca.setMnemonic(KeyEvent.VK_I);
 		presenca.addActionListener(this);
-		label.setLabelFor(presenca);
 
 		matriculados.setMnemonic(KeyEvent.VK_I);
 		matriculados.addActionListener(this);
-		label.setLabelFor(matriculados);
 
 		painelFinalTroca.add(comboAulas);
 		comboAulas.setBounds(5, 10, 450, 20);
@@ -174,8 +165,8 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 	public Component panel() {
 		colocaAjuda();
 		criaPainelTroca();
+		local.setText("Relatórios");
 		criaPainel();
-
 		return painelFinal;
 	}
 }

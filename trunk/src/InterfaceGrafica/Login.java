@@ -1,16 +1,12 @@
 package InterfaceGrafica;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,6 +35,7 @@ public class Login extends Main implements ActionListener{
 	JLabel img = new JLabel(new ImageIcon("res/backgroundLoginIcall.jpg"));
 	ButtonGroup tipo = new ButtonGroup();
 	final JLabel label = new JLabel("iCall");
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonLogin){
@@ -72,10 +69,8 @@ public class Login extends Main implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Usuario ou senha errado");
 				}
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

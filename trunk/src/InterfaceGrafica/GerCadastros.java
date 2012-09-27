@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,59 +19,48 @@ public class GerCadastros extends Main implements ActionListener{
 
 	JPanel painelFinal = new JPanel(new BorderLayout(1, 0));
 	JPanel painelFinalTroca = new JPanel();
-
 	JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
-	
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
-	
 	JButton novo = new JButton("Novo");
-	JButton modificar = new JButton("Modificar");
+	JButton modificar = new JButton("Editar");
 	JButton listar = new JButton("Listar");
-	JButton deletar = new JButton("Excluir");
-	JButton voltar = new JButton("Voltar");
-	
+	JButton deletar = new JButton("Remover");
+	JButton voltar = new JButton("Voltar");	
 	JPanel esquerda = new JPanel();
 	JPanel direita = new JPanel(new BorderLayout(0, 1));
 	
 	public void colocaAjuda(){
 		novo.setToolTipText("Novo cadastro");
 		modificar.setToolTipText("Modificar uma conta de professor");
-		listar.setToolTipText("Lista de professores cadastrados");
 		deletar.setToolTipText("Deletar o cadastro de um professor");
 		voltar.setToolTipText("Clique para voltar a página inicial");
 	}
 	public void criaPainel(){
-		local.setText("Gerencia de cadastros");
+		local.setText("Alunos");
 		
 		novo.setMnemonic(KeyEvent.VK_I);
 		novo.addActionListener(this);
-        label.setLabelFor(novo);
         
         modificar.setMnemonic(KeyEvent.VK_I);
         modificar.addActionListener(this);
-        label.setLabelFor(modificar);
         
         deletar.setMnemonic(KeyEvent.VK_I);
         deletar.addActionListener(this);
-        label.setLabelFor(deletar);
         
         listar.setMnemonic(KeyEvent.VK_I);
         listar.addActionListener(this);
-        label.setLabelFor(listar);
         
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
-        label.setLabelFor(voltar);
 		
     	esquerda.add(novo);
+        label.setLabelFor(listar);
     	novo.setBounds(10, 10, 150, 20);
         esquerda.add(modificar);
         modificar.setBounds(10, 40, 150, 20);
         esquerda.add(deletar);
         deletar.setBounds(10, 70, 150, 20);
-        esquerda.add(listar);
-        listar.setBounds(10, 100, 150, 20);
         esquerda.add(voltar);
         voltar.setBounds(10, 130, 150, 20);    	
         
@@ -100,17 +88,11 @@ public class GerCadastros extends Main implements ActionListener{
     	
     	painelFinal.add(image);
 	}
-	public void criaPainelTroca(){
-		
-	}
 	public Component panel(){
 		colocaAjuda();
-		criaPainelTroca();
 		criaPainel();
-		
 		return painelFinal;
 	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	}
