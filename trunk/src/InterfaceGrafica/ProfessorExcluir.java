@@ -1,14 +1,18 @@
 package InterfaceGrafica;
 
 import gerenciarArq.Arquivo;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 public class ProfessorExcluir extends Professores implements ActionListener{
 	JComboBox nomes = new JComboBox();
@@ -42,11 +46,13 @@ public class ProfessorExcluir extends Professores implements ActionListener{
 					nomes.addItem(professores.get(i).split("##")[0]);
 			}
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
 		conf.setMnemonic(KeyEvent.VK_I);
 		conf.addActionListener(this);
+        label.setLabelFor(conf);
 
 		painelFinalTroca.add(LNome);
 		LNome.setBounds(5, 10, 350, 20);

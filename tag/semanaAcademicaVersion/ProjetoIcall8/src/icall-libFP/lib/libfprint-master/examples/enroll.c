@@ -45,7 +45,7 @@ struct fp_print_data *enroll(struct fp_dev *dev) {
 	
 	//printf("You will need to successfully scan your finger %d times to "
 	//	"complete the process.\n", fp_dev_get_nr_enroll_stages(dev));
-	system("dialog --infobox 'Passe o dedo indicador da mão direita, apos concluido o cadastro, aparecera uma mensagem informando' 10 30");
+	system("zenity --info --title='Sucesso' --text='Passe o dedo indicador da mão direita, apos concluido o cadastro, aparecera uma mensagem informando'");
 	do {
 		struct fp_img *img = NULL;
 	
@@ -54,7 +54,7 @@ struct fp_print_data *enroll(struct fp_dev *dev) {
 		r = fp_enroll_finger_img(dev, &enrolled_print, &img);
 		if (img) {
 			fp_img_save_to_file(img, "enrolled.pgm");
-			system("dialog --infobox 'Escreveu imagem digitalizada para enrolled.pgm' 5 30");
+			system("zenity --info --title='Sucesso' --text='Escreveu imagem digitalizada para enrolled.pgm'");
 			fp_img_free(img);
 		}
 		if (r < 0) {
@@ -64,27 +64,27 @@ struct fp_print_data *enroll(struct fp_dev *dev) {
 
 		switch (r) {
 		case FP_ENROLL_COMPLETE:
-			system("dialog --infobox 'Enroll completo!' 5 30");
+			system("zenity --info --title='Sucesso' --text='Enroll completo!'");
 			break;
 		case FP_ENROLL_FAIL:
-			system("dialog --infobox 'Enroll failed, something wen't wrong :(' 10 30");
+			system("zenity --warning --title='Falha' --text='Enroll failed, something wen't wrong :('");
 			return NULL;
 		case FP_ENROLL_PASS:
-			system("dialog --infobox 'OK passe seu dedo novamente!' 5 30");
+			system("zenity --info --title='Sucesso' --text='OK passe seu dedo novamente!'");
 			break;
 		case FP_ENROLL_RETRY:
-			system("dialog --infobox 'Didn't quite catch that. Please try again.' 10 30");
+			system("zenity --warning --title='Falha' --text='Didn't quite catch that. Please try again.'");
 			break;
 		case FP_ENROLL_RETRY_TOO_SHORT:
-			system("dialog --infobox 'Your swipe was too short, please try again.' 5 30");
+			system("zenity --warning --title='Falha' --text='Your swipe was too short, please try again.'");
 			break;
 		case FP_ENROLL_RETRY_CENTER_FINGER:
-			system("dialog --infobox 'Didn't catch that, please center your finger on the "
-				"sensor and try again.' 7 30");
+			system("zenity --warning --title='Falha' --text='Didn't catch that, please center your finger on the "
+				"sensor and try again.'");
 			break;
 		case FP_ENROLL_RETRY_REMOVE_FINGER:
-			system("dialog --infobox 'Scan failed, please remove your finger and then try "
-				"again.' 5 30");
+			system("zenity --warning --title='Falha' --text='Scan failed, please remove your finger and then try "
+				"again.'");
 			break;
 		}
 	} while (r != FP_ENROLL_COMPLETE);
@@ -93,7 +93,7 @@ struct fp_print_data *enroll(struct fp_dev *dev) {
 		system("dialog --infobox 'Enroll complete but no print?' 5 30");
 		return NULL;
 	}
-	system("dialog --infobox 'Enrollment completed!' 5 30");
+	system("zenity --info --title='Sucesso' --text='Cadastro completo'");
 	return enrolled_print;
 }
 
@@ -105,50 +105,55 @@ int main(void)
 	struct fp_dev *dev;
 	struct fp_print_data *data;
 	
-	system("dialog --infobox 'Precione enter para continuar' 5 30");
-	getchar();
+    if(!system("zenity --question --title='Cadastramento' --text='Continuar?'")){
+		r = fp_init();
+		if (r < 0) {
+			system("zenity --warning --title='Falha' --text='Falha na inicialização da libfprint'");
+			fprintf(stderr, "Falha na inicialização da libfprint\n");
+			exit(1);
+		}
+		fp_set_debug(3);
 
-	r = fp_init();
-	if (r < 0) {
-		fprintf(stderr, "Falha na inicialização da libfprint\n");
-		exit(1);
+		discovered_devs = fp_discover_devs();
+		if (!discovered_devs) {
+			system("zenity --warning --title='Falha' --text='Não foi possível descobrir dispositivos'");
+			fprintf(stderr, "Não foi possível descobrir dispositivos\n");
+			goto out;
+		}
+
+		ddev = discover_device(discovered_devs);
+		if (!ddev) {
+			system("zenity --warning --title='Falha' --text='Não foi detectado um dispositivo'");
+			fprintf(stderr, "Não foi detectado um dispositivo.\n");
+			goto out;
+		}
+
+		dev = fp_dev_open(ddev);
+		fp_dscv_devs_free(discovered_devs);
+		if (!dev) {
+			system("zenity --warning --title='Falha' --text='Não foi possível abrir o dispositivoCould not open device.'");
+			fprintf(stderr, "Não foi possível abrir o dispositivoCould not open device.\n");
+			goto out;
+		}
+
+		//system("dialog --infobox 'Inaugurado dispositivo. É agora tempo de inscrever o seu dedo' 5 30");
+		data = enroll(dev);
+		if (!data)
+			goto out_close;
+
+		r = fp_print_data_save(data, RIGHT_INDEX);
+		if (r < 0){
+			system("zenity --warning --title='Falha' --text='Falha ao salvar dados'");
+			fprintf(stderr, "Falha ao salvar dados, codigo %d\n", r);
+		}
+
+		fp_print_data_free(data);
+	out_close:
+		fp_dev_close(dev);
+	out:
+		fp_exit();
+		return r;
 	}
-	fp_set_debug(3);
-
-	discovered_devs = fp_discover_devs();
-	if (!discovered_devs) {
-		fprintf(stderr, "Não foi possível descobrir dispositivos\n");
-		goto out;
-	}
-
-	ddev = discover_device(discovered_devs);
-	if (!ddev) {
-		fprintf(stderr, "Não foi detectado um dispositivo.\n");
-		goto out;
-	}
-
-	dev = fp_dev_open(ddev);
-	fp_dscv_devs_free(discovered_devs);
-	if (!dev) {
-		fprintf(stderr, "Não foi possível abrir o dispositivoCould not open device.\n");
-		goto out;
-	}
-
-	system("dialog --infobox 'Inaugurado dispositivo. É agora tempo de inscrever o seu dedo' 5 30");
-	data = enroll(dev);
-	if (!data)
-		goto out_close;
-
-	r = fp_print_data_save(data, RIGHT_INDEX);
-	if (r < 0)
-		fprintf(stderr, "Falha ao salvar dados, codigo %d\n", r);
-
-	fp_print_data_free(data);
-out_close:
-	fp_dev_close(dev);
-out:
-	fp_exit();
-	return r;
 }
 
 

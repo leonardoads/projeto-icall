@@ -17,16 +17,21 @@ public class Professores extends Main implements ActionListener{
 	final String systemSeparator = java.io.File.separator;
 	final String ICALLLOGO = System.getProperty("user.home") + systemSeparator
 			+ ".iCall" + systemSeparator +"logo-Icall.png";
+
 	JPanel painelFinal = new JPanel(new BorderLayout(1, 0));
 	JPanel painelFinalTroca = new JPanel();
+
 	JLabel image = new JLabel(new ImageIcon("res/ICALLTELA.jpg"));
+	
 	JPanel painel= new JPanel(new GridLayout(0,1));
 	final JLabel label = new JLabel("iCall");
+	
 	JButton novo = new JButton("Novo");
-	JButton modificar = new JButton("Editar");
+	JButton modificar = new JButton("Modificar");
 	JButton listar = new JButton("Listar");
 	JButton deletar = new JButton("Remover");
 	JButton voltar = new JButton("Voltar");
+	
 	JPanel esquerda = new JPanel();
 	JPanel direita = new JPanel(new BorderLayout(0, 1));
 	
@@ -95,8 +100,10 @@ public class Professores extends Main implements ActionListener{
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();
+		
 		return painelFinal;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == voltar){

@@ -2,27 +2,39 @@ package InterfaceGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import classes.Evento;
+import classes.LerArquivo;
+
 public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 	
 	JPanel painel= new JPanel();
+	
 	JLabel labelMatricula = new JLabel("Digite a matricula");
 	String disc = "";
+	
 	JTextField matricula = new JTextField();
+	
 	JButton computar = new JButton("Registra");
 	JButton voltar = new JButton("Voltar");
+
 	final String systemSeparator = java.io.File.separator;
 	final String ICALLPATH = System.getProperty("user.home")+systemSeparator + ".iCall"+systemSeparator+"icall-libFP"+systemSeparator;
 	String folderpath = System.getProperty("user.home") + "/iCall";
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -46,6 +58,7 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 								+" "
 								+ matricula);
 			} catch (IOException err) {
+				// TODO Auto-generated catch block
 				err.printStackTrace();
 			}
 			
@@ -55,12 +68,15 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 		
 		computar.setMnemonic(KeyEvent.VK_I);
 		computar.addActionListener(this);
+        label.setLabelFor(computar);
         
         voltar.setMnemonic(KeyEvent.VK_I);
         voltar.addActionListener(this);
+        label.setLabelFor(voltar);
         
         verificAulo.setMnemonic(KeyEvent.VK_I);
         verificAulo.addActionListener(this);
+        label.setLabelFor(verificAulo);
 		
 		painel.setLayout(null);
 		
@@ -83,6 +99,7 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();
+		
 		return painel;
 	}
 }
