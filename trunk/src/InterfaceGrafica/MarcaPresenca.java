@@ -2,11 +2,13 @@ package InterfaceGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -40,6 +42,7 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 		}else if(e.getSource() == iniciar){
 			if(!tempo.getText().trim().equals("") ){
 				try{
+		            Integer temp = Integer.parseInt(tempo.getText());
 		            trocaPainel(marcapresenca2,marcapresenca,"iCall - Marca presença##"+nomeAulas[comboAulas.getSelectedIndex()]);
 				}catch(NumberFormatException ex){            
 					JOptionPane.showMessageDialog(null, "Só é permitido números inteiros!");  
@@ -62,21 +65,27 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 				comboAulas.addItem(arrayAulas[i].split("##")[0] +" - "+arrayAulas[i].split("##")[1]);
 			}
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 
 		iniciar.setMnemonic(KeyEvent.VK_I);
 		iniciar.addActionListener(this);
+		label.setLabelFor(iniciar);
 
 		voltar.setMnemonic(KeyEvent.VK_I);
 		voltar.addActionListener(this);
+		label.setLabelFor(voltar);
 
 		verificAulo.setMnemonic(KeyEvent.VK_I);
 		verificAulo.addActionListener(this);
+		label.setLabelFor(verificAulo);
 
 		painel.setLayout(null);
 
@@ -104,6 +113,7 @@ public class MarcaPresenca extends JanelaPrincipal implements ActionListener{
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();
+
 		return painel;
 	}
 }

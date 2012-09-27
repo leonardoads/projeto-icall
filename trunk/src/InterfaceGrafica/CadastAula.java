@@ -1,18 +1,23 @@
 package InterfaceGrafica;
 
 import classes.*;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 import classes.CriarDiretorio;
 
 public class CadastAula extends GerCadastrosAula implements ActionListener{
@@ -20,6 +25,7 @@ public class CadastAula extends GerCadastrosAula implements ActionListener{
 	JLabel labelAula = new JLabel("Digite o nome da disciplina");
 	JLabel labelprof = new JLabel("Digite o nome do(a) professor(a)");
 	JLabel labeldias = new JLabel("Selecione os dias");
+
 	JTextField nomeAula = new JTextField();
 	JTextField nomeProf = new JTextField();
 	JRadioButton dom = new JRadioButton("Dom");
@@ -29,26 +35,30 @@ public class CadastAula extends GerCadastrosAula implements ActionListener{
 	JRadioButton qui = new JRadioButton("Qui");
 	JRadioButton sex = new JRadioButton("Sex");
 	JRadioButton sab = new JRadioButton("Sab");
+
 	JPanel labAula = new JPanel(new GridLayout(0,1));
 	JPanel labProf = new JPanel(new GridLayout(0,1));
 	JPanel labDias = new JPanel(new GridLayout(0,1));
 	JPanel TexAula = new JPanel(new GridLayout(0,1));
 	JPanel TexProf = new JPanel(new GridLayout(0,1));
 	JPanel listDias = new JPanel();
+
 	JPanel aula = new JPanel(new GridLayout(0,1));
 	JPanel prof = new JPanel(new GridLayout(0,1));
 	JPanel dias = new JPanel(new GridLayout(0,1));
+
 	JButton cadastra = new JButton("Cadastra");
 	JPanel botao = new JPanel(new GridLayout(0,1));
+
 	JPanel painel = new JPanel(new GridLayout(0,1));
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == modificar){
-
+		//	trocaPainel(editarProf,gerCadasAula,"iCall - Editar cadastro");
 		}else if(e.getSource() == listar){
 			trocaPainel(listarAulas,cadastraAula,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){
-
+		//	trocaPainel(deletProf,gerCadasAula,"iCall - Excluir cadastro");
 		}
 		else if(e.getSource() == novo){
 			trocaPainel(cadastraAula,cadastraAula,"iCall - Cadastra aula");
@@ -147,6 +157,7 @@ public class CadastAula extends GerCadastrosAula implements ActionListener{
 			}
 		}
 	}
+
 	private void apagacampos() { //Apaga todos os campos editados
 		nomeAula.setText(null);  
 		nomeProf.setText(null);
@@ -157,11 +168,16 @@ public class CadastAula extends GerCadastrosAula implements ActionListener{
 		qui.setSelected(false);
 		sex.setSelected(false);
 		sab.setSelected(false);//Se o dia estiver marcado ao cadastrar ele desmarca
+
+
 	}
+
 	public void criaPainelTroca(){
 		cadastra.setToolTipText("Click para continuar o cadastro");
+
 		cadastra.setMnemonic(KeyEvent.VK_I);
 		cadastra.addActionListener(this);
+		label.setLabelFor(cadastra);
 
 		dom.setBackground(new Color(255,255,255,0));  
 		seg.setBackground(new Color(255,255,255,0));  
@@ -214,6 +230,7 @@ public class CadastAula extends GerCadastrosAula implements ActionListener{
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();
+
 		return painelFinal;
 	}
 }

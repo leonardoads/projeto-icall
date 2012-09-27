@@ -48,28 +48,27 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		voltar.setToolTipText("Clique para voltar a página inicial");
 	}
 	public void criaPainel(){
-        verificAulo.setMnemonic(KeyEvent.VK_I);
         verificAulo.addActionListener(this);
         
-        gerenciaAlunos.setMnemonic(KeyEvent.VK_I);
+        gerenciaAlunos.setMnemonic(KeyEvent.VK_A);
         gerenciaAlunos.addActionListener(this);
         
-        gerenciaAulas.setMnemonic(KeyEvent.VK_I);
+        gerenciaAulas.setMnemonic(KeyEvent.VK_D);
         gerenciaAulas.addActionListener(this);
         
-        gerRelatorio.setMnemonic(KeyEvent.VK_I);
+        gerRelatorio.setMnemonic(KeyEvent.VK_R);
         gerRelatorio.addActionListener(this);
 
-        professores.setMnemonic(KeyEvent.VK_I);
+        professores.setMnemonic(KeyEvent.VK_P);
         professores.addActionListener(this);
         
-        btsobre.setMnemonic(KeyEvent.VK_I);
+        btsobre.setMnemonic(KeyEvent.VK_S);
 		btsobre.addActionListener(this);
 		
-		btajuda.setMnemonic(KeyEvent.VK_I);
+		btajuda.setMnemonic(KeyEvent.VK_J);
 		btajuda.addActionListener(this);
 		
-        voltar.setMnemonic(KeyEvent.VK_I);
+        voltar.setMnemonic(KeyEvent.VK_L);
         voltar.addActionListener(this);
 		
 		local.setText("iCall");
@@ -150,7 +149,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		}else if(e.getSource() == professores){
 			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Professores");
 		}else if(e.getSource() == btsobre){
-		//	trocaPainel(panelSobre,janelaPrincipal,"Sobre");
+			trocaPainel(panelSobre,janelaPrincipal,"Sobre");
 		}
 	}
 }

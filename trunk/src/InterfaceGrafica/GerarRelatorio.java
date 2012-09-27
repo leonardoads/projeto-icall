@@ -11,11 +11,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+
 import classes.LerArquivo;
 
 public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
@@ -27,15 +31,22 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 	JComboBox comboAulas = new JComboBox();
 	JButton presenca = new JButton("Presença");
 	JButton matriculados = new JButton("Matriculados");
+	JButton relacaoProf = new JButton("Professores");
+	JButton relacaoAlu = new JButton("Alunos");
+	JButton relacaoDisc = new JButton("Disciplinas");
+
 	String[] nomeAulas;
 	String copiar;
 	PrintWriter pw;
+
+	private FileWriter out = null;
 	private FileReader arq = null;
 	private BufferedReader buffer = null;
 	private List<String> linhas = new ArrayList<String>();
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if (e.getSource() == voltar) {
 			trocaPainel(janelaPrincipal, gerarRelatorio, "iCall");
 		}else if (e.getSource() == verificAulo) {
@@ -146,11 +157,13 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		presenca.setMnemonic(KeyEvent.VK_I);
 		presenca.addActionListener(this);
 
-		matriculados.setMnemonic(KeyEvent.VK_I);
 		matriculados.addActionListener(this);
+		
+		relacaoProf.addActionListener(this);
+		relacaoAlu.addActionListener(this);
+		relacaoDisc.addActionListener(this);
 
 		painelFinalTroca.add(comboAulas);
 		comboAulas.setBounds(5, 10, 450, 20);
@@ -160,13 +173,18 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 
 		painelFinalTroca.add(matriculados);
 		matriculados.setBounds(300, 90, 150, 20);
+		
+		JLabel relacao = new JLabel("Relação de:");
+		painelFinalTroca.add(relacao);
+		relacao.setBounds(200, 140, 100, 20);
+		
 	}
 
 	public Component panel() {
 		colocaAjuda();
 		criaPainelTroca();
-		local.setText("Relatórios");
 		criaPainel();
+
 		return painelFinal;
 	}
 }
