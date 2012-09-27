@@ -150,7 +150,7 @@ public class JanelaPrincipal extends Main implements ActionListener{
 		}else if(e.getSource() == professores){
 			trocaPainel(panelProfessores,janelaPrincipal,"iCall - Professores");
 		}else if(e.getSource() == btsobre){
-			trocaPainel(panelSobre,janelaPrincipal,"Sobre");
+		//	trocaPainel(panelSobre,janelaPrincipal,"Sobre");
 		}
 	}
 }

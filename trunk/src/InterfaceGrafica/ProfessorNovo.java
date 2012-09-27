@@ -1,17 +1,13 @@
 package InterfaceGrafica;
 
 import gerenciarArq.Arquivo;
-
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -19,15 +15,14 @@ public class ProfessorNovo extends Professores implements ActionListener{
 	JTextField nome = new JTextField();
 	JPasswordField senha = new JPasswordField();
 	JPasswordField senhaConf = new JPasswordField();
-	
 	JLabel LNome = new JLabel("Nome:");
 	JLabel LSenha = new JLabel("Senha:");
 	JLabel LConfSenha = new JLabel("Confirme a senha:");
-	
 	JButton conf = new JButton("Cadastrar");
 	final String systemSeparator = java.io.File.separator;
 	final String caminho = System.getProperty("user.home") + systemSeparator + "iCall" + systemSeparator ;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == conf){
@@ -58,7 +53,6 @@ public class ProfessorNovo extends Professores implements ActionListener{
 	public void criaPainelTroca(){
 		conf.setMnemonic(KeyEvent.VK_I);
 		conf.addActionListener(this);
-        label.setLabelFor(conf);
         
 		painelFinalTroca.add(LNome);
 		LNome.setBounds(5, 10, 350, 20);
@@ -86,7 +80,6 @@ public class ProfessorNovo extends Professores implements ActionListener{
 		colocaAjuda();
 		criaPainelTroca();
 		criaPainel();
-		
 		return painelFinal;
 	}
 }

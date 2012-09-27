@@ -28,7 +28,7 @@ public class Main {
 	public static Component gerCadasAula = (new GerCadastrosAula()).panel();
 	public static Component listarAlunos = (new ListarAlunos()).panel();
 	public static Component listarAulas = (new ListarAulas()).panel();
-	public static Component panelSobre = (new About()).panel();
+	public static Component panelSobre;// = (new About()).panel();
 
 	boolean LOGIN = true;
 
@@ -106,10 +106,10 @@ public class Main {
 				listarAulas = (new ListarAulas()).panel();
 				janela.add((JPanel)listarAulas);
 			}
-			else if(coloca.equals(panelSobre)){
-				panelSobre = (new About()).panel();
-				janela.add((JPanel)panelSobre);
-			}
+			//else if(coloca.equals(panelSobre)){
+			//	panelSobre = (new About()).panel();
+			//	janela.add((JPanel)panelSobre);
+			//}
 				janela.setTitle(titulo.replace("##", " - "));
 				janela.repaint();
 				janela.setVisible(true);
