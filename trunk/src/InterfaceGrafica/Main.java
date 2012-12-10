@@ -22,6 +22,7 @@ public class Main {
 	public static Component panelProfessores = (new Professores()).panel();
 	public static Component novoProfessor = (new ProfessorNovo()).panel();
 	public static Component editarProf = (new ProfessorEditar()).panel();
+	public static Component editarAluno = (new AlunoEditar()).panel();
 	public static Component deletProf = (new ProfessorExcluir()).panel();
 	public static Component listProf = (new ProfessoresLista()).panel();
 	public static Component gerCadasAluno = (new GerCadastrosAluno()).panel();
@@ -81,6 +82,9 @@ public class Main {
 			}else if(coloca.equals(panelProfessores)){
 				panelProfessores = (new Professores()).panel();
 				janela.add((JPanel)panelProfessores);
+			}else if(coloca.equals(editarAluno)){
+				editarAluno = (new AlunoEditar()).panel();
+				janela.add((JPanel)editarAluno);
 			}else if(coloca.equals(novoProfessor)){
 				novoProfessor = (new ProfessorNovo()).panel();
 				janela.add((JPanel)novoProfessor);

@@ -2,22 +2,15 @@ package InterfaceGrafica;
 
 import classes.*;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CadastAluno extends GerCadastrosAluno implements ActionListener{
@@ -49,9 +42,9 @@ public class CadastAluno extends GerCadastrosAluno implements ActionListener{
 		}else if(e.getSource() == cadastrar){
 			String matricula = numMatricula.getText().toString();
 			String nome = nomeAluno.getText().toString() ;
-			if(!matricula.equals("") && !nome.equals("")){
+			if(!matricula.replace(" ", "").equals("") && !nome.replace(" ", "").equals("")){
 				try {
-					Runtime.getRuntime().exec("sh "+ICALLPATH+"enroll.sh"
+					Runtime.getRuntime().exec("gnome-terminal -x sh "+ICALLPATH+"enroll.sh"
 							+ " " + nome.replaceAll(" ", "_") + " "
 							+ matricula);
 				} catch (IOException e1) {

@@ -8,7 +8,7 @@ public class GerCadastrosAluno extends GerCadastros{
 		if(e.getSource() == voltar){
 			trocaPainel(janelaPrincipal,gerCadasAluno,"iCall");
 		}else if(e.getSource() == modificar){
-			
+			trocaPainel(editarAluno,gerCadasAluno,"iCall - Editar cadastro de aluno");			
 		}else if(e.getSource() == listar){
 			trocaPainel(listarAlunos,gerCadasAluno,"iCall - Lista de cadastros");
 		}else if(e.getSource() == deletar){

@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 
 import classes.LerArquivo;
 
-public class ListarAlunos extends GerCadastrosAluno implements ActionListener{
+public class ListarAlunos extends JanelaPrincipal implements ActionListener{
 	String nomeArq = "enroll.icall";
 	JList lista;
 	JScrollPane scroll;
@@ -22,7 +22,7 @@ public class ListarAlunos extends GerCadastrosAluno implements ActionListener{
 	
 	public void preencheLista(String nomeArq){
 		try {
-			DefaultComboBoxModel modelo = new DefaultComboBoxModel(LerArquivo.lerArq(nomeArq).replace("##", " - ").split("\n"));
+			DefaultComboBoxModel modelo = new DefaultComboBoxModel(LerArquivo.lerArq(nomeArq).replace("##", " - ").replace("|", " - ").split("\n"));
 			this.lista  = new JList(modelo);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -47,17 +47,21 @@ public class ListarAlunos extends GerCadastrosAluno implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	if(e.getSource() == modificar){
-		//	trocaPainel(editarProf,gerCadasAluno,"iCall - Editar cadastro");
-		}else if(e.getSource() == listar){
-		//	trocaPainel(listProf,gerCadasAluno,"iCall - Lista de cadastros");
-		}else if(e.getSource() == deletar){
-		//	trocaPainel(deletProf,gerCadasAluno,"iCall - Excluir cadastro");
-		}
-		else if(e.getSource() == novo){
-			trocaPainel(cadastraAluno,listarAlunos,"iCall - Cadastra aluno");
-		}else if(e.getSource() == voltar){
-			trocaPainel(gerCadasAluno,listarAlunos,"iCall");
+		if (e.getSource() == voltar) {
+			trocaPainel(gerarRelatorio, listarAlunos, "iCall");
+		}else if (e.getSource() == verificAulo) {
+			trocaPainel(marcapresenca, listarAlunos, "iCall - Marca presença");
+		}else if(e.getSource() == btsobre){
+			trocaPainel(panelSobre,listarAlunos,"Sobre");
+		}else if (e.getSource() == gerRelatorio) {
+
+		} else if (e.getSource() == professores) {
+			trocaPainel(panelProfessores, listarAlunos,
+					"iCall - Gerenciamento de contas");
+		}else if(e.getSource() == gerenciaAlunos){
+			trocaPainel(gerCadasAluno,listarAlunos,"iCall - Alunos");
+		}else if(e.getSource() == gerenciaAulas){
+			trocaPainel(gerCadasAula,listarAlunos,"iCall - Aulas");
 		}
 	}
 }
