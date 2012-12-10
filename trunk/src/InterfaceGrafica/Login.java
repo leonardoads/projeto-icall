@@ -3,7 +3,9 @@ package InterfaceGrafica;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Event;
 import java.awt.GridLayout;
+import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -25,6 +27,9 @@ import classes.LerArquivo;
 
 public class Login extends Main implements ActionListener{
 	JPanel painelFinal = new JPanel();
+	final String systemSeparator = java.io.File.separator;
+	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
+			+ ".iCall" + systemSeparator + "icall-libFP" + systemSeparator;
 	
 	JButton buttonLogin = new JButton("Login");
 	
@@ -43,6 +48,7 @@ public class Login extends Main implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonLogin){
 			try {
+				Runtime.getRuntime().exec("gnome-terminal -x sh "+ICALLPATH+"login.sh");
 				String arq = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"contas.icall");
 				int i;
 				boolean acc = false;
@@ -50,15 +56,17 @@ public class Login extends Main implements ActionListener{
 				if(professor.isSelected()){
 					type =2;
 				}
+				String usuario = nome.getText().toString();
+				String[] usuarios = arq.split("\n");
 				for(i=0;i<arq.split("\n").length;i++){
-					if(nome.getText().toString().equals(arq.split("\n")[i].split("##")[0]) && 
-							senha.getText().toString().equals(arq.split("\n")[i].split("##")[1])){
-						if(type==1 && arq.split("\n")[i].split("##")[2].equals("1")){
+					if(usuario.equals(usuarios[i].split("##")[0]) && 
+							senha.getText().toString().equals(usuarios[i].split("##")[1])){
+						if(type==1 && usuarios[i].split("##")[2].equals("1")){
 							tipoUsuario = "COORDENAÇÂO";
 							trocaPainel(janelaPrincipal, login, "iCall");
 							limparCampos();
 							acc = true;
-						}else if(type==2 && arq.split("\n")[i].split("##")[2].equals("2")){
+						}else if(type==2 && usuarios[i].split("##")[2].equals("2")){
 							tipoUsuario = "PROFESSOR";
 							trocaPainel(janelaPrincipal, login, "iCall");
 							limparCampos();
@@ -85,10 +93,9 @@ public class Login extends Main implements ActionListener{
         senha.setText("");
 	}
 	public void criate(){
-		buttonLogin.setMnemonic(KeyEvent.VK_I);
+		buttonLogin.setMnemonic(KeyEvent.VK_ENTER);
 		buttonLogin.addActionListener(this);
         label.setLabelFor(buttonLogin);
-        
         painelFinal.setLayout(null);
         
         painelFinal.add(img);

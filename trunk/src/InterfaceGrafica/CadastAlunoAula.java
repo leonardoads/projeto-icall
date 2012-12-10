@@ -82,7 +82,7 @@ public class CadastAlunoAula extends GerCadastrosAula implements ActionListener{
 			nomeAlunos = new String[arrayAlunos.length];
 			for(int i=0;i<arrayAlunos.length;i++){
 				nomeAlunos[i] = arrayAlunos[i].split("##")[0];
-				comboAlunos.addItem(arrayAlunos[i].split("##")[0] +" - "+arrayAlunos[i].split("##")[1]);
+				comboAlunos.addItem(arrayAlunos[i].split("|")[0] +" - "+arrayAlunos[i].split("|")[1]);
 				
 			}
 			

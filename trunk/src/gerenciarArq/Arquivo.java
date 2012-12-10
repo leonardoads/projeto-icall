@@ -20,7 +20,6 @@ public class Arquivo {
 	static String sepInf = "##";
 	
 	public static void escreveArquivo(String conteudo, String Arquivo, boolean adicionar){
-		Arquivo = Arquivo;
         try {
             FileWriter fw;
             fw = new FileWriter(Arquivo, adicionar);
@@ -58,6 +57,7 @@ public class Arquivo {
 	}
 	public static ArrayList<String> listaOrdemAlfabetica(String nomeArq){
 		String[] nomes = null;
+		ArrayList<String> listRetorno = new ArrayList<String>();
 		try{
 			ArrayList<String> arq = lerArquivo(nomeArq);
 			nomes = new String[arq.size()];
@@ -73,14 +73,14 @@ public class Arquivo {
 					}
 				}
 			}
+
+			for(String i : nomes){
+				listRetorno.add(i);
+			}
 		}catch (Exception e) {
 
 		}
-		ArrayList<String> retorno = new ArrayList<String>();
-		for(String i : nomes){
-			retorno.add(i);
-		}
-		return retorno;
+		return listRetorno;
 	}
 	public static boolean verificaNome(String nome, String nomeArq){
 		try{
@@ -93,6 +93,25 @@ public class Arquivo {
 			return false;
 		}
 		return false;
+	}
+	public static void editAraluno(String nomeVelho, String nomeNovo, String matricula, String nomeArq){
+		try{
+			String novoConteudo = "";
+			ArrayList<String> arq = lerArquivo(nomeArq);
+			for (int i = 0; i < arq.size(); i++) {
+				System.out.println(arq.get(i));
+				if(arq.get(i).split("##")[1].equals(nomeVelho)){
+					novoConteudo+=matricula+"##"+nomeNovo;
+				}
+				else{
+					novoConteudo+=arq.get(i);
+				}
+				novoConteudo +="\n";
+			}
+			Arquivo.escreveArquivo(novoConteudo, nomeArq, false);
+		}catch (Exception e) {
+
+		}
 	}
 	public static void editar(String inf, String nomeArq){
 		try{

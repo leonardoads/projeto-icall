@@ -58,6 +58,10 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		} else if (e.getSource() == professores) {
 			trocaPainel(panelProfessores, gerarRelatorio,
 					"iCall - Gerenciamento de contas");
+		}else if(e.getSource() == gerenciaAlunos){
+			trocaPainel(gerCadasAluno,gerarRelatorio,"iCall - Alunos");
+		}else if(e.getSource() == gerenciaAulas){
+			trocaPainel(gerCadasAula,gerarRelatorio,"iCall - Aulas");
 		}else if (e.getSource() == presenca) {
 
 			JFileChooser salvandoArquivo = new JFileChooser();
@@ -108,6 +112,12 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 			}
 			pw.close();
 
+		} else if (e.getSource() == relacaoProf){
+			
+		}else if (e.getSource() == relacaoAlu){
+			trocaPainel(listarAlunos,gerarRelatorio,"iCall - Lista de cadastros");
+		}else if (e.getSource() == relacaoDisc){
+		
 		}
 	}
 
@@ -178,6 +188,12 @@ public class GerarRelatorio extends JanelaPrincipal implements ActionListener {
 		painelFinalTroca.add(relacao);
 		relacao.setBounds(200, 140, 100, 20);
 		
+		painelFinalTroca.add(relacaoProf);
+		relacaoProf.setBounds(300, 170, 150, 20);
+		painelFinalTroca.add(relacaoAlu);
+		relacaoAlu.setBounds(300, 200, 150, 20);
+		painelFinalTroca.add(relacaoDisc);
+		relacaoDisc.setBounds(300, 230, 150, 20);
 	}
 
 	public Component panel() {
