@@ -31,24 +31,29 @@ public class AlunoEditar extends Professores implements ActionListener{
 	JButton conf = new JButton("Editar");
 	final String systemSeparator = java.io.File.separator;
 	final String caminho = System.getProperty("user.home") + systemSeparator + "iCall" + systemSeparator ;
+	final String caminho2 = System.getProperty("user.home") + systemSeparator + ".icall" + systemSeparator;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource() == conf){
-			//Arquivo.editar(nomes.getSelectedItem().toString() + nomeAluno.getText() + numMatricula.getText() , caminho+"enroll.icall");
-			Arquivo.editAraluno(nomes.getSelectedItem().toString().split("##")[1] , nomeAluno.getText(), numMatricula.getText() , caminho+"enroll.icall");
+			Arquivo.editAraluno(nomes.getSelectedItem().toString().split(" - ")[1] , nomeAluno.getText(), numMatricula.getText() , caminho+"enroll.icall");
+			try {
+				Runtime.getRuntime().exec("mv "+caminho2+nomes.getSelectedItem().toString().split(" - ")[0]+" "+caminho2+numMatricula.getText());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			nomeAluno.setText("");
 			numMatricula.setText("");
+			trocaPainel(editarAluno,editarAluno,"iCall - Editar cadastro de aluno");
 		
 	}else if(e.getSource() == voltar){
 		trocaPainel(gerCadasAluno,editarAluno,"iCall");
 	}else if(e.getSource() == modificar){
-		trocaPainel(editarAluno,editarAluno,"iCall - Editar senha");
+		trocaPainel(editarAluno,editarAluno,"iCall - Editar cadastro de aluno");
 	}else if(e.getSource() == listar){
 		trocaPainel(listarAlunos,editarAluno,"iCall - Lista de cadastros");
-		//		}else if(e.getSource() == deletar){
-		//			trocaPainel(deletProf,editarAluno,"iCall - Excluir cadastro");
 	}else if(e.getSource() == novo){
 		trocaPainel(cadastraAluno,editarAluno,"iCall - Cadastrar professor");
 	}
@@ -57,7 +62,7 @@ public void criaPainelTroca(){
 	try {
 		ArrayList<String> alunos = Arquivo.listaOrdemAlfabetica(caminho+"enroll.icall");
 		for(int i=0;i<alunos.size();i++){
-			nomes.addItem(alunos.get(i));
+			nomes.addItem(alunos.get(i).replace("##"," - "));
 		}
 	} catch (Exception e) {
 		// TODO: handle exception
