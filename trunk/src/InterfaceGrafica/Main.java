@@ -38,18 +38,7 @@ public class Main {
 
 	JLabel local = new JLabel("Janela inicial");
 
-	public void run(){
-
-	    try {
-			DBConnection dbCon = new DBConnection("icall.db");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    
+	public void run(){	    
 		criaJanela();
 	}
 	public void criaJanela(){

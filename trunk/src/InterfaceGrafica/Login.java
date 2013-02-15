@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -43,12 +44,16 @@ public class Login extends Main implements ActionListener{
 	JLabel img = new JLabel(new ImageIcon("res/backgroundLoginIcall.jpg"));
 	ButtonGroup tipo = new ButtonGroup();
 	final JLabel label = new JLabel("iCall");
+	final String caminho = System.getProperty("user.home") + systemSeparator + "iCall" + systemSeparator ;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonLogin){
 			try {
+				DBConnection db = new DBConnection(caminho+"icall.db");
+				
 				Runtime.getRuntime().exec("gnome-terminal -x sh "+ICALLPATH+"login.sh");
-				String arq = LerArquivo.lerArq(System.getProperty("user.home") + "/iCall/"+"contas.icall");
+				Vector<String[]> c = db.getContas();
+				
 				int i;
 				boolean acc = false;
 				int type = 1;
@@ -56,16 +61,14 @@ public class Login extends Main implements ActionListener{
 					type =2;
 				}
 				String usuario = nome.getText().toString();
-				String[] usuarios = arq.split("\n");
-				for(i=0;i<arq.split("\n").length;i++){
-					if(usuario.equals(usuarios[i].split("##")[0]) && 
-							senha.getText().toString().equals(usuarios[i].split("##")[1])){
-						if(type==1 && usuarios[i].split("##")[2].equals("1")){
+				for (int j = 0; j < c.size(); j++) {
+					if(usuario.equals(c.get(j)[0]) && senha.getText().toString().equals(c.get(j)[1])){
+						if(type==1 && c.get(j)[2].equals("c")){
 							tipoUsuario = "COORDENAÇÂO";
 							trocaPainel(janelaPrincipal, login, "iCall");
 							limparCampos();
 							acc = true;
-						}else if(type==2 && usuarios[i].split("##")[2].equals("2")){
+						}else if(type==2 && c.get(j)[2].equals("p")){
 							tipoUsuario = "PROFESSOR";
 							trocaPainel(janelaPrincipal, login, "iCall");
 							limparCampos();
@@ -78,20 +81,38 @@ public class Login extends Main implements ActionListener{
 					senha.setText("");
 					JOptionPane.showMessageDialog(null, "Usuario ou senha errado");
 				}
-			} catch (FileNotFoundException e1) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			} 
 		}
 	}
 	public void limparCampos(){
 		nome.setText("");
         senha.setText("");
 	}
+	public void CriaRoot(){
+		try{
+			DBConnection db = new DBConnection(caminho+"icall.db");
+			Vector<String[]> c = db.getContas();
+			boolean criarRoot = true;
+			for (int j = 0; j < c.size(); j++) {
+				if(c.get(j)[2].equals("c")){
+					criarRoot = false;
+				}
+			}
+			if(criarRoot){
+				db.addConta("icall", "icall", "c");
+				db.initDB();
+				JOptionPane.showMessageDialog(null, "Por falta de conta para coordenador, foi criado\n " +
+						"uma conta do tipo, com usuário e senha 'icall'");
+			}
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+		}
+	}
 	public void criate(){
+		CriaRoot();
 		buttonLogin.setMnemonic(KeyEvent.VK_ENTER);
 		buttonLogin.addActionListener(this);
         label.setLabelFor(buttonLogin);
