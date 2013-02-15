@@ -1,12 +1,15 @@
 package InterfaceGrafica;
 
 import gerenciarArq.Arquivo;
+import gerenciarDB.DBConnection;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,16 +35,15 @@ public class ProfessorNovo extends Professores implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == conf){
 			if(senha.getText().equals(senhaConf.getText())){
-				if(!Arquivo.verificaNome(nome.getText(), caminho+"contas.icall")){
-					Arquivo.escreveArquivo(nome.getText()+"##"+senha.getText()+"##2\n", caminho+"contas.icall", true);
-					senha.setText("");
-					senhaConf.setText("");
-					nome.setText("");
-				}else{
-					JOptionPane.showMessageDialog(null, "ERRO: nome ja cadastrado");
+				try {
+					DBConnection db = new DBConnection(caminho+"icall.db");
+					db.initDB();
+					db.addConta(nome.getText(), senha.getText(), "p");
+					JOptionPane.showMessageDialog(null, "Cadastrado");
+				} catch (Exception err) {
+					// TODO Auto-generated catch block
+					System.err.println(err.getMessage());
 				}
-			}else{
-				JOptionPane.showMessageDialog(null, "ERRO: as senhas não coincidem");
 			}
 		}else if(e.getSource() == voltar){
 			trocaPainel(panelProfessores,novoProfessor,"iCall");

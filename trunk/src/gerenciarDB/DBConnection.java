@@ -20,43 +20,15 @@ public class DBConnection {
   /**
    * Cria as tabelas
    */
-  public void initDB() {
-	//comando para criar tabela contas
-//		StringBuilder tbContas = new StringBuilder();
-//		tbContas.append("CREATE TABLE IF NOT EXISTS [contas](");
-//		tbContas.append("[_id] INTEGER PRIMARY KEY AUTOINCREMENT, ");
-//		tbContas.append("nome varchar(100), ");
-//		tbContas.append("senha varchar(8));");
-//		tbContas.append("tipo varchar(1));");
-		
-
-		//comando para criar tabela alunos
-//		StringBuilder tbAlunos = new StringBuilder();
-//		tbAlunos.append("CREATE TABLE IF NOT EXISTS [alunos](");
-//		tbAlunos.append("[_id] INTEGER PRIMARY KEY AUTOINCREMENT, ");
-//		tbAlunos.append("nome varchar(100), ");
-//		tbAlunos.append("matricula varchar(20));");
-			
+  public void initDB() {			
 	try {
-//		this.stm.executeUpdate(tbContas.toString());
-//		this.stm.executeUpdate(tbAlunos.toString());
-		String a = "v";
-		a = "c";
-		this.stm.executeUpdate("DROP TABLE IF EXISTS contas");
-		this.stm.executeUpdate("CREATE TABLE contas (" +
+		this.stm.executeUpdate("CREATE TABLE IF NOT EXISTS contas (" +
           "nome varchar(50) PRIMARY KEY NOT NULL," +
-          "senha varchar(10)"+
-          "tipo varchar(1));");
-		
-		this.stm.executeUpdate("DROP TABLE IF EXISTS alunos");
-		this.stm.executeUpdate("CREATE TABLE alunos (" +
+          "senha varchar(50),"+
+          "tipo varchar(50));");
+		this.stm.executeUpdate("CREATE TABLE IF NOT EXISTS alunos (" +
           "nome varchar(50) PRIMARY KEY NOT NULL," +
 			"matricula varchar(50));");
-		
-//      this.stm.executeUpdate("DROP TABLE IF EXISTS Recordes");
-//      this.stm.executeUpdate("CREATE TABLE Recordes (" +
-//          "jogo varchar(50) PRIMARY KEY NOT NULL," +
-//      "score integer);");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -89,26 +61,12 @@ public class DBConnection {
 	  }
 	  try {
 	      this.stm = this.conn.createStatement();
-	      this.stm.executeUpdate("INSERT INTO contas VALUES (\"" +
-	          nome + "\"," + senha + "\"," + tipo + ")");
+	      this.stm.executeUpdate("INSERT INTO contas VALUES ('" +
+	          nome + "','" + senha + "','" + tipo + "')");
 	    } catch (SQLException e) {
-	      e.printStackTrace();
+	     	System.err.println(e.getMessage());
 	    }  
   }
-//  /**
-//   * Adiciona uma nova linha na tabela de recordes.
-//   * @param score
-//   */
-//  public void addHiScore(HiScore score) {
-//    try {
-//      this.stm = this.conn.createStatement();
-//      this.stm.executeUpdate("INSERT INTO Recordes VALUES (\"" +
-//          score.getJogo() + "\"," + 
-//          String.valueOf(score.getScore()) + ")");
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//  }
   
   /**
    * Remove a linha da tabela cuja coluna "matricula" seja igual a string passada como parâmetro
@@ -137,38 +95,9 @@ public class DBConnection {
 	      e.printStackTrace();
 	    } 
   }
-//  /**
-//   * Remove a linha da tabela cuja coluna "jogo" seja igual a string passada
-//   * como parâmetro. 
-//   * @param jogo
-//   */
-//  public void removeHiScore(String jogo) {
-//    try {
-//      this.stm = this.conn.createStatement();
-//      this.stm.executeUpdate("DELETE FROM Recordes WHERE " +
-//          "jogo=\"" + jogo + "\"");
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//  }
   
-//  /**
-//   * Altera o valor de uma linha do banco de dados.
-//   * @param hiScore
-//   */
-//  public void atualizaHiScore(HiScore hiScore) {
-//    try {
-//      this.stm = this.conn.createStatement();
-//      this.stm.executeUpdate("UPDATE Recordes SET score=\"" +
-//          String.valueOf(hiScore.getScore()) + "\"" +
-//          "WHERE jogo=\"" + hiScore.getJogo() + "\"");
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//  }
-  
-  public Vector getContas(){
-	  Vector contas = new Vector();
+  public Vector<String[]> getContas(){
+	  Vector<String[]> contas = new Vector<String[]>();
 	    ResultSet rs;
 	    try {
 	      rs = this.stm.executeQuery("SELECT * FROM contas " +
@@ -225,25 +154,4 @@ public class DBConnection {
  	    
  	    return alunos;
     }
-//  /**
-//   * Retorna um objeto Vector com todos os recordes do banco de dados
-//   * organizados em ordem decrescente de pontuação.
-//   * @return
-//   */
-//  public Vector getAll() {
-//    Vector hiScores = new Vector();
-//    ResultSet rs;
-//    try {
-//      rs = this.stm.executeQuery("SELECT * FROM Recordes " +
-//      "ORDER BY score DESC");
-//      while (rs.next()) {
-//        hiScores.add(new HiScore(rs.getString("jogo"), rs.getInt("score")));
-//      }
-//      rs.close();
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//    
-//    return hiScores;
-//  }
 }
