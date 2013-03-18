@@ -13,18 +13,15 @@
 //Metodo para encontrar e retorna o dispositivo
 struct fp_dscv_dev *discover_device(struct fp_dscv_dev **discovered_devs){
 	struct fp_dscv_dev *dispositivo = discovered_devs[0]; // obj que manipula o dispositivo
-	struct fp_driver *drv;
 	if (!dispositivo)
 		return NULL;
 	
-	drv = fp_dscv_dev_get_driver(dispositivo);
 	return dispositivo;
 }
 
 //Metodo responsavel pela verificacao
 int verify(struct fp_dev *dev, struct fp_print_data *data){
 	int r;
-
 	do {
 		struct fp_img *img = NULL;
 
@@ -38,7 +35,7 @@ int verify(struct fp_dev *dev, struct fp_print_data *data){
 		}
 		if (r < 0) {
 			system("zenity --info --title='Erro' --text='Falha na verificação :('");	
-			return r;
+			return -1;
 		}
 		switch (r) {
 		case FP_VERIFY_NO_MATCH:
@@ -46,19 +43,19 @@ int verify(struct fp_dev *dev, struct fp_print_data *data){
 			return 0;
 		case FP_VERIFY_MATCH:
 			system("zenity --info --title='uhuu' --text='Você é você, :)'");
-			return 0;
+			return 1;
 		case FP_VERIFY_RETRY:
 			system("zenity --info --title='Erro' --text='Scan didn't quite work. Please try again.'");	
-			break;
+			return 2;
 		case FP_VERIFY_RETRY_TOO_SHORT:
 			system("zenity --info --title='Erro' --text='Tente novamente, passando uma área maior do dedo ;/'");
-			break;
+			return 3;
 		case FP_VERIFY_RETRY_CENTER_FINGER:
 			system("zenity --info --title='Erro' --text='Tente novamente ;/'");
-			break;
+			return 4;
 		case FP_VERIFY_RETRY_REMOVE_FINGER:
 			system("zenity --info --title='Erro' --text='Remova o dedo do dispositivo e tente novamente'");
-			break;
+			return 5;
 		}
 	} while (1);
 }
@@ -106,16 +103,13 @@ int main(void)
 		goto out_close;
 	}
 	do {
-		char buffer[20];
-
-		verify(dev, data);
-		break;
+		return verify(dev, data);
 	} while (1);
 	fp_print_data_free(data);
 out_close:
 	fp_dev_close(dev);
 out:
 	fp_exit();
-	return r;
+	return -1;
 }
 
