@@ -30,7 +30,7 @@ public class Login extends Main implements ActionListener{
 	final String systemSeparator = java.io.File.separator;
 	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
 			+ ".iCall" + systemSeparator + "icall-libFP" + systemSeparator;
-	
+
 	JButton buttonLogin = new JButton("Login");
 	
 	JTextField nome = new JTextField();
@@ -38,7 +38,7 @@ public class Login extends Main implements ActionListener{
 	
 	JRadioButton professor = new JRadioButton("Professor");
 	JRadioButton coordenacao = new JRadioButton("Coordenação");
-	
+	static String senhaUsada;
 	JLabel labelNome = new JLabel("Nome ");
 	JLabel labelSenha = new JLabel("Senha");
 	JLabel img = new JLabel(new ImageIcon("res/backgroundLoginIcall.jpg"));
@@ -63,16 +63,21 @@ public class Login extends Main implements ActionListener{
 				String usuario = nome.getText().toString();
 				for (int j = 0; j < c.size(); j++) {
 					if(usuario.equals(c.get(j)[0]) && senha.getText().toString().equals(c.get(j)[1])){
-						if(type==1 && c.get(j)[2].equals("c")){
+						final String systemSeparator = java.io.File.separator;
+						final String ICALLPATH = System.getProperty("user.home") + systemSeparator
+								+ ".iCall" + systemSeparator + "icall-libFP" + systemSeparator;if(type==1 && c.get(j)[2].equals("c")){
 							tipoUsuario = "COORDENAÇÂO";
 							trocaPainel(janelaPrincipal, login, "iCall");
+							senhaUsada = String.valueOf(senha.getPassword());
 							limparCampos();
 							acc = true;
 						}else if(type==2 && c.get(j)[2].equals("p")){
 							tipoUsuario = "PROFESSOR";
 							trocaPainel(janelaPrincipal, login, "iCall");
+							senhaUsada = String.valueOf(senha.getPassword());
 							limparCampos();
 							acc = true;
+			
 						}
 						break;
 					}

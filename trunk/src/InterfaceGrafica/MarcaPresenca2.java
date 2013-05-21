@@ -1,7 +1,10 @@
 package InterfaceGrafica;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,9 +14,11 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import classes.Evento;
@@ -22,7 +27,13 @@ import classes.LerArquivo;
 public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 	
 	JPanel painel= new JPanel();
-	
+	JDialog dialogSenhaProf = new JDialog();
+	JLabel labelSenha = new JLabel("Digite a senha do professor: ");
+	JLabel labelSenhaErrada = new JLabel();
+	JPanel painelSenhaProf = new JPanel(new FlowLayout());
+	JPasswordField fieldSenhaProf = new JPasswordField(25);
+	JButton buttonOK = new JButton("Ok");
+	JButton buttonCancelar = new JButton("Cancelar");
 	JLabel labelMatricula = new JLabel("Digite a matricula");
 	String disc = "";
 	
@@ -39,8 +50,52 @@ public class MarcaPresenca2 extends JanelaPrincipal implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == voltar){
-			trocaPainel(marcapresenca,marcapresenca2,"iCall - Marca presença");
-			this.matricula.setText("");
+			painelSenhaProf.add(labelSenha);
+			painelSenhaProf.add(fieldSenhaProf);
+			painelSenhaProf.add(labelSenhaErrada);
+			painelSenhaProf.add(buttonOK);
+			painelSenhaProf.add(buttonCancelar);
+			dialogSenhaProf.add(painelSenhaProf);
+			dialogSenhaProf.setSize(new Dimension(360, 200));
+			dialogSenhaProf.setVisible(true);
+			buttonOK.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if(arg0.getActionCommand().equals("Ok")){
+						System.out.println(Login.senhaUsada);
+						if(Login.senhaUsada.equals(String.valueOf(fieldSenhaProf.getPassword()))){
+							System.out.println("senha correta");
+							dialogSenhaProf.setVisible(false);
+							trocaPainel(marcapresenca,marcapresenca2,"iCall - Marca presença");
+							matricula.setText("");
+							fieldSenhaProf.setText("");
+							labelSenhaErrada.setText("");
+						}
+					else{
+						System.out.println("senha errada");
+						labelSenhaErrada.setForeground(Color.RED);
+						labelSenhaErrada.setText("*");
+					}
+					
+					
+					}
+				}
+			} );
+			
+			buttonCancelar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if(arg0.getActionCommand().equals("Cancelar")){
+						fieldSenhaProf.setText("");
+						labelSenhaErrada.setText("");
+						dialogSenhaProf.setVisible(false);
+					}
+					
+				}
+			});
+			
 		}else if(e.getSource() == verificAulo){
 			JOptionPane.showMessageDialog(null, "Você ja esta ai");
 		}else if(e.getSource() == computar){
