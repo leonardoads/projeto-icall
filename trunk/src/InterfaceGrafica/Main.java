@@ -3,16 +3,27 @@ package InterfaceGrafica;
 import gerenciarDB.DBConnection;
 
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 
 public class Main {
+	/*final String systemSeparator = java.io.File.separator;
+	final String ICALLPATH = System.getProperty("user.home") + systemSeparator
+			+ ".iCall" + systemSeparator + "icall-libFP" + systemSeparator;*/
+	
 	static JFrame janela;
+	
 	public static String tipoUsuario = "PROFESSOR";
 	public static Component janelaPrincipal = (new JanelaPrincipal()).panel();
 	public static Component cadastraAula = (new CadastAula()).panel();
@@ -38,12 +49,30 @@ public class Main {
 
 	JLabel local = new JLabel("Janela inicial");
 
-	public void run(){	    
+	public void run(){	
+		/*try {
+			Runtime.getRuntime().exec("gnome-terminal -x sh "+ICALLPATH+"login.sh");
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}*/
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 		criaJanela();
 	}
 	public void criaJanela(){
 		//JFrame.setDefaultLookAndFeelDecorated(true);
 		janela = new JFrame();
+		//janela.setAlwaysOnTop(true);
 		janela.setSize(720,450);//Tamanho da janela
 		janela.setResizable(false);//pode redimensionar a janela
 		janela.setLocation(50,50);//Local onde a janela aparecera
@@ -51,6 +80,7 @@ public class Main {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		trocaPainel(login, null, "iCall - login");
+	  
 		//trocaPainel(janelaPrincipal, null, "iCall");
 	}
 	public void trocaPainel(Component coloca, Component remover, String titulo){
